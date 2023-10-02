@@ -4,7 +4,8 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1708244676313317
 
 # How to work with pg_stat_statments, part 1
 
-There are two big areas of query optimization:
+## 2 branches of query optimization
+There are two big branches of query optimization:
 1. "Micro" optimization: analysis and improvement of particular queries. Main tool: `EXPLAIN`.
 2. "Macro" optimization: analysis of whole or large parts of workload, segmentation of it, studying characteristics, going from top to down, to identify and improve the parts that behave the worst. Main tools: `pg_stat_statements` (and additions or alternatives), wait event analysis, and Postgres logs.
 
@@ -12,6 +13,7 @@ Today we focus on how to read and use `pg_stat_statements`, starting from basics
 
 Docs: https://postgresql.org/docs/current/pgstatstatements.html
 
+## pg_stat_statements basics
 Extension `pg_stat_statements` (for short, "pgss") became standard de-facto for macro-analysis.
 
 It tracks all queries, aggregating them to query groups – called "normalized queries" – where parameters are 
@@ -27,6 +29,20 @@ The view pg_stat_statements has 3 kinds of columns:
 2. Descriptive columns: ID of database (`dbid`), user (`userid`), and the query itself (`query`).
 3. Metrics. Almost all of them are cumulative: `calls`, `total_time`, `rows`, etc. Non-cumulative: `stddev_plan_time`, `stddev_exec_time`, `min_exec_time`, etc. In this post, we'll focus only on cumulative ones.
 
+// Below I sometimes call normalized query "query group" or simply "group".
+
+Let's mention some metrics that are usually most frequently used in macro optimization (full list: https://postgresql.org/docs/current/pgstatstatements.html#PGSTATSTATEMENTS-PG-STAT-STATEMENTS):
+1. `calls` – how many query calls happened for this query group (normalized query)
+2. `total_plan_time` and `total_exec_time` – aggregated duration for planning and execution for this group (again, remember: failed queries are not tracked, including those that failed on `statement_timeout`)
+3. `rows` – how many rows returned by queries in this group
+4. `shared_blks_hit` and `shared_blks_read` – number if hit and read operations from the buffer pool. Two important notes here:
+    - "read" here means a read from the buffer pool – it is not necessarily a physical read from disk, since data can be cached in the OS page cache. So we cannot say these reads are reads from disk. Some monitoring systems make this mistake, but there are cases that this nuance is essential for our analysis to produce correct results and conclusions.
+    - the names "blocks hit" and "blocks read" might be a little bit misleading, suggesting that here we talk about data volumes – number of blocks (buffers). While aggregation here definitely make sense, we must keep in mind that the same buffers may be read or hit multiple times. So instead of "blocks have been hit" it is better to say "block hits".
+5. `wal_bytes` – how many bytes are written to WAL by queries in this group
+
+There are many more other interesting metrics, it is recommended to explore all of them: https://postgresql.org/docs/current/pgstatstatements.html.
+
+## Dealing with cumulative metrics in pgss
 To read and interpret data from pgss, you need three steps:
 1. Take two snapshots corresponding to two points of time.
 2. Calculate the diff for each cumulative metric and for time difference for the two points in time
@@ -44,22 +60,9 @@ Step 3 can be also applied not to particular normalized queries on a single host
 
 If your monitoring system supports pgss, you don't need to deal with working with snapshots manually – although, keep in mind that I personally don't know any monitoring that works with pgss perfectly, preserving all kinds of information discussed in this post (and I studied quite a few of Postgres monitoring tools).
 
-// Below I sometimes call normalized query "query group" or simply "group".
+Assuming you successfully obtained 2 snapshots of pgss (remembering timestamp when they were collected) or use proper monitoring tool, let's consider practical meaning of the three derivatives we discussed.
 
-Let's mention some metrics that are usually most frequently used in macro optimization (full list: https://postgresql.org/docs/current/pgstatstatements.html#PGSTATSTATEMENTS-PG-STAT-STATEMENTS):
-1. `calls` – how many query calls happened for this query group (normalized query)
-2. `total_plan_time` and `total_exec_time` – aggregated duration for planning and execution for this group (again, remember: failed queries are not tracked, including those that failed on `statement_timeout`)
-3. `rows` – how many rows returned by queries in this group
-4. `shared_blks_hit` and `shared_blks_read` – number if hit and read operations from the buffer pool. Two important notes here:
-    - "read" here means a read from the buffer pool – it is not necessarily a physical read from disk, since data can be cached in the OS page cache. So we cannot say these reads are reads from disk. Some monitoring systems make this mistake, but there are cases that this nuance is essential for our analysis to produce correct results and conclusions.
-    - the names "blocks hit" and "blocks read" might be a little bit misleading, suggesting that here we talk about data volumes – number of blocks (buffers). While aggregation here definitely make sense, we must keep in mind that the same buffers may be read or hit multiple times. So instead of "blocks have been hit" it is better to say "block hits".
-5. `wal_bytes` – how many bytes are written to WAL by queries in this group
-
-There are many more other interesting metrics, it is worth exploring them all.
-
-Once you obtained 2 snapshots of pgss (remembering timestamp when they were collected), let's consider practical meaning of the three derivatives we discussed:
-
-Derivative 1. Time-based differentiation 
+## Derivative 1. Time-based differentiation 
 
 * `dM/dt`, where `M` is `calls` – the meaning is simple. It's QPS (queries per second). If we talk about particular group (normalized query), it's that all queries in this group have. `10,000` is pretty large so, probably, you need to improve the client (app) behavior to reduce it, `10` is pretty small (of course, depending on situation). If we consider this derivative for whole node, it's our "global QPS".
 
