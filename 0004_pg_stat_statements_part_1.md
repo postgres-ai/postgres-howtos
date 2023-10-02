@@ -74,7 +74,7 @@ Assuming you successfully obtained 2 snapshots of pgss (remembering timestamp wh
 
 * `dM/dt`, where `M` is `wal_bytes` – the stream of WAL bytes written. This is relatively new metric (PG13+) and can be used to understand which queries contribute to WAL writes the most – of course, the more WAL is written, the higher pressure to physical and logical replication, and to the backup systems we have. An example of highly pathological workload here is: a series of transactions like `begin; delete from ...; rollback;` deleting many rows and reverting this action – this produces a lot of WAL not performing any useful work. // TODO: failing queries are not tracked in pgss, so this example is not ideal – find a better one
 
-=== 
+---
 
 That's it for the part 1 of pgss-related howto, in next parts we'll talk about dM/dc and %M, and other practical aspects of pgss-based macro optimization.
 
