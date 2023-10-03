@@ -12,10 +12,10 @@ Understanding physical layout of rows in tables may be important in many cases, 
 - Tuple – physical version of a row in a table.
 - Tuple header – metadata about a tuple, including transaction ID, visibility info, and more.
 - Transaction ID (same as XID, `tid`, `txid`) – unique  identifier for a transaction in Postgres:
-    - It's allocated for modifying transactions. Read-only ones have "virtualxid" to avoid "wasting" XIDs, since they are still 32-bit as of PG16. There is work in progress to switch to 64-bit.(https://commitfest.postgresql.org/43/3594/)
+    - It's allocated for modifying transactions. Read-only ones have "virtualxid" to avoid "wasting" XIDs, since they are still 32-bit as of PG16. There is [work in progress](https://commitfest.postgresql.org/43/3594/) to switch to 64-bit.
     - You can get a XID allocated for your transactions calling function `pg_current_xact_id()` or, in PG12 and older, `txid_current()`.
 
-Tuple header has interesting "hidden", or "system" columns (docs: https://postgresql.org/docs/current/ddl-system-columns.html):
+Tuple header has interesting "hidden", or "system" columns ([docs](https://postgresql.org/docs/current/ddl-system-columns.html)):
 - `ctid` – a hidden (system) column that represents the physical location of tuple in table, it has the form of two integers `(X, Y)`, where:
     - `X` is page number starting from 0
     - `Y` is sequential number of tuple inside the page starting from 1
@@ -122,7 +122,7 @@ nik=# select sum(pg_column_size(t1.*)) from t1 where user_id = 101469;
 (1 row)
 ```
 
-Thus, the Postgres executor must handle 88 KiB to return 317 bytes – this is far from optimal. Since we have an Index Scan here, some of those buffer hits are index-related, some – to get data  from heap (table).
+Thus, the Postgres executor must handle 88 KiB to return 317 bytes – this is far from optimal. Since we have an `Index Scan` here, some of those buffer hits are index-related, some – to get data  from heap (table).
 
 ## How to improve?
 
@@ -157,8 +157,8 @@ This is physical reorganization of the table. It has two downsides:
 - UPDATEs of the rows will move tuples, decreasing the benefits of `CLUSTER`, so it might be needed to repeat it.
 
 There are two ways to reorganize the table
-- SQL command `CLUSTER` (docs: https://postgresql.org/docs/current/sql-cluster.html) – not an online operation, cannot be recommended for live systems that cannot afford maintenance windows
-- `pg_repack` (https://github.com/reorg/pg_repack) has option "--order-by=<..>", which allows achieving an effect similar to `CLUSTER` but in an online fashion, without downtime.
+- SQL command `CLUSTER` ([docs](https://postgresql.org/docs/current/sql-cluster.html)) – not an online operation, cannot be recommended for live systems that cannot afford maintenance windows
+- [pg_repack](https://github.com/reorg/pg_repack) has option `--order-by=<..>`, which allows achieving an effect similar to `CLUSTER` but in an online fashion, without downtime.
 
 For our example:
 ```
@@ -177,7 +177,7 @@ nik=# explain (analyze, buffers, costs off) select * from t1 where user_id = 101
  Execution Time: 0.070 ms
 (5 rows)
 ```
-– also just 4 buffer hits – same as for the approach with covering index and Index-Only Scan. Though, here we have Index Scan.
+– also just 4 buffer hits – same as for the approach with a covering index and an `Index-Only Scan`. Though, here we have an `Index Scan`.
 
 ---
 
