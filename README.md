@@ -1,4 +1,4 @@
-This project has started by @NikolayS on 2023-09-26 https://twitter.com/samokhvalov/status/1706748070967624174:
+This project has been started by @NikolayS on 2023-09-26 https://twitter.com/samokhvalov/status/1706748070967624174:
 
 > I'm going to start a PostgreSQL marathon: each day I'll be posting a new "howto" recipe. Today is the day zero, and the first post is here.
 
