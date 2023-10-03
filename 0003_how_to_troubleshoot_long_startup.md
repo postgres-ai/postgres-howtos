@@ -1,6 +1,7 @@
 Originally from: [tweet](https://twitter.com/samokhvalov/status/1707466169245171773), [LinkedIn post](...). 
 
 ---
+
 # How to troubleshoot long Postgres startup
 
 #PostgresMarathon day 3. In [the previous post](./0002_how_to_troubleshoot_and_speedup_postgres_restarts.md), we discussed how to quickly stop or restart PostgreSQL. Now it's time to discuss what to do if you are trying to start your server but see this:

@@ -80,4 +80,3 @@ That's it for the part 1 of pgss-related howto, in next parts we'll talk about d
 
 Let me know if it was useful, and please share with your colleagues and any people who work with 
 PostgreSQL.
-.

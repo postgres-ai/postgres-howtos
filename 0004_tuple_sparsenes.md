@@ -179,7 +179,7 @@ nik=# explain (analyze, buffers, costs off) select * from t1 where user_id = 101
 ```
 – also just 4 buffer hits – same as for the approach with covering index and Index-Only Scan. Though, here we have Index Scan.
 
-===
+---
 
 That's it for today – we discussed ctid. Sometime in the future, we'll continue with xmin and xmax and a deep inspection of table/index pages for practical reasons.
 
