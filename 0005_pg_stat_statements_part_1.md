@@ -9,9 +9,7 @@ There are two big branches of query optimization:
 1. "Micro" optimization: analysis and improvement of particular queries. Main tool: `EXPLAIN`.
 2. "Macro" optimization: analysis of whole or large parts of workload, segmentation of it, studying characteristics, going from top to down, to identify and improve the parts that behave the worst. Main tools: `pg_stat_statements` (and additions or alternatives), wait event analysis, and Postgres logs.
 
-Today we focus on how to read and use `pg_stat_statements`, starting from basics and proceeding to using the data from it for macro optimization.
-
-Docs: https://postgresql.org/docs/current/pgstatstatements.html
+Today we focus on how to read and use [pg_stat_statements](https://postgresql.org/docs/current/pgstatstatements.html), starting from basics and proceeding to using the data from it for macro optimization.
 
 ## pg_stat_statements basics
 Extension `pg_stat_statements` (for short, "pgss") became standard de-facto for macro-analysis.
@@ -31,7 +29,7 @@ The view pg_stat_statements has 3 kinds of columns:
 
 // Below I sometimes call normalized query "query group" or simply "group".
 
-Let's mention some metrics that are usually most frequently used in macro optimization (full list: https://postgresql.org/docs/current/pgstatstatements.html#PGSTATSTATEMENTS-PG-STAT-STATEMENTS):
+Let's mention some metrics that are usually most frequently used in macro optimization ([full list](https://postgresql.org/docs/current/pgstatstatements.html#PGSTATSTATEMENTS-PG-STAT-STATEMENTS)):
 1. `calls` – how many query calls happened for this query group (normalized query)
 2. `total_plan_time` and `total_exec_time` – aggregated duration for planning and execution for this group (again, remember: failed queries are not tracked, including those that failed on `statement_timeout`)
 3. `rows` – how many rows returned by queries in this group
@@ -40,7 +38,7 @@ Let's mention some metrics that are usually most frequently used in macro optimi
     - the names "blocks hit" and "blocks read" might be a little bit misleading, suggesting that here we talk about data volumes – number of blocks (buffers). While aggregation here definitely make sense, we must keep in mind that the same buffers may be read or hit multiple times. So instead of "blocks have been hit" it is better to say "block hits".
 5. `wal_bytes` – how many bytes are written to WAL by queries in this group
 
-There are many more other interesting metrics, it is recommended to explore all of them: https://postgresql.org/docs/current/pgstatstatements.html.
+There are many more other interesting metrics, it is recommended to explore all of them (see [the docs](https://postgresql.org/docs/current/pgstatstatements.html)).
 
 ## Dealing with cumulative metrics in pgss
 To read and interpret data from pgss, you need three steps:
@@ -63,7 +61,6 @@ If your monitoring system supports pgss, you don't need to deal with working wit
 Assuming you successfully obtained 2 snapshots of pgss (remembering timestamp when they were collected) or use proper monitoring tool, let's consider practical meaning of the three derivatives we discussed.
 
 ## Derivative 1. Time-based differentiation 
-
 * `dM/dt`, where `M` is `calls` – the meaning is simple. It's QPS (queries per second). If we talk about particular group (normalized query), it's that all queries in this group have. `10,000` is pretty large so, probably, you need to improve the client (app) behavior to reduce it, `10` is pretty small (of course, depending on situation). If we consider this derivative for whole node, it's our "global QPS".
 
 * `dM/dt`, where `M` is `total_plan_time + total_exec_time` – this is the most interesting and key metric in query macro analysis targeted at resource consumption optimization (goal: reduce time spent by server to process queries). Interesting fact: it is measured in "seconds per second", meaning: how many seconds our server spends to process queries in this query group. *Very* rough (but illustrative) meaning: if we have `2 sec/sec` here, it means that we spend 2 seconds each second to process such queries – we definitely would like to have more than 2 vCPUs to do that. Although, this is a very rough meaning because pgss doesn't distinguish situations when query is waiting for some lock acquisition vs. performing some actual work in CPU (for that, we need to involve wait event analysis) – so there may be cases when the value here is high not having a significant effect on the CPU load.
