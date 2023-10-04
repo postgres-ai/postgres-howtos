@@ -4,7 +4,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1708244676313317
 
 # How to work with pg_stat_statments, part 1
 
-## 2 branches of query optimization
+## Two branches of query optimization
 There are two big branches of query optimization:
 1. "Micro" optimization: analysis and improvement of particular queries. Main tool: `EXPLAIN`.
 2. "Macro" optimization: analysis of whole or large parts of workload, segmentation of it, studying characteristics, going from top to down, to identify and improve the parts that behave the worst. Main tools: `pg_stat_statements` (and additions or alternatives), wait event analysis, and Postgres logs.
@@ -72,11 +72,10 @@ Assuming you successfully obtained 2 snapshots of pgss (remembering timestamp wh
 
 * `dM/dt`, where `M` is `shared_blks_hit + shared_blks_read` - buffer operations per second (only to read data, not to write it). This is another key metric for optimization. It is worth converting buffer operation numbers to bytes. In most cases, buffer size is 8 KiB (check: show block_size;), so `500,000` buffer hits&reads per second translates to `500000 bytes/sec * 8 / 1024 / 1024 =  ~ 3.8 GiB/s` of the internal data reading flow (again: the same buffer in the pool can be process multiple times). This is a significant load – you might want to check the other metrics to understand if it is reasonable to have or it is a candidate for optimization.
 
-* `dM/dt`, where `M` is `wal_bytes` – the stream of WAL bytes written. This is relatively new metric (PG13+) and can be used to understand which queries contribute to WAL writes the most – of course, the more WAL is written, the higher pressure to physical and logical replication, and to the backup systems we have. An example of highly pathological workload here is: a series of transactions like `begin; delete from ...; rollback;` deleting many rows and reverting this action – this produces a lot of WAL not performing any useful work. // TODO: failing queries are not tracked in pgss, so this example is not ideal – find a better one
+* `dM/dt`, where `M` is `wal_bytes` – the stream of WAL bytes written. This is relatively new metric (PG13+) and can be used to understand which queries contribute to WAL writes the most – of course, the more WAL is written, the higher pressure to physical and logical replication, and to the backup systems we have. An example of highly pathological workload here is: a series of transactions like `begin; delete from ...; rollback;` deleting many rows and reverting this action – this produces a lot of WAL not performing any useful work. (Note: that despite the `ROLLBACK` here and inability of pgss to tracks failed statements, the statements here are going to be tracked because they are successful inside the transaction.)
 
 ---
 
-That's it for the part 1 of pgss-related howto, in next parts we'll talk about dM/dc and %M, and other practical aspects of pgss-based macro optimization.
+That's it for the part 1 of pgss-related howto, in next parts we'll talk about `dM/dc` and `%M`, and other practical aspects of pgss-based macro optimization.
 
-Let me know if it was useful, and please share with your colleagues and any people who work with 
-PostgreSQL.
+Let me know if it was useful, and please share with your colleagues and any people who work with PostgreSQL.
