@@ -33,7 +33,7 @@ Let's consider the meanings of various derived metrics obtained in such way:
 
 4. `dM/dc`, where `M` is `shared_blks_hit + shared_blks_read` – average number of  "hits + reads" from the buffer pool. It is worth translating this to bytes: for example, `500,000` buffer hits&reads translates to `500000 GiB * 8 / 1024 / 1024 =  ~ 3.8 GiB`, this is a significant number for a single query, especially if its goal is to return just a row or a few. Large numbers here should be considered as a strong call for query optimization. Additional notes:
     - in many cases, it makes sense to have hits and reads can be also considered separately – there may be the cases when, for example, queries in some pgss group do not lead to high disk IO and reading from the page cache, but they have so many hits in the buffer pool, so their performance is suboptimal, even with all the data being cached in the buffer pool
-    - to have real disk IO numbers, it is worth using https://github.com/powa-team/pg_stat_kcache
+    - to have real disk IO numbers, it is worth using [pg_stat_kcache](https://github.com/powa-team/pg_stat_kcache)
     - a sudden change in the values of this metric for a particular group that persists over time, can be a sign of plan flip and needs to be studied
     - high-level aggregated values are also interesting to observe, answering questions like "how many MiB do all queries, on average, read on this server?"
 
