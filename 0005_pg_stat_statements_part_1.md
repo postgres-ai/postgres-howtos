@@ -35,7 +35,7 @@ Let's mention some metrics that are usually most frequently used in macro optimi
 3. `rows` – how many rows returned by queries in this group
 4. `shared_blks_hit` and `shared_blks_read` – number if hit and read operations from the buffer pool. Two important notes here:
     - "read" here means a read from the buffer pool – it is not necessarily a physical read from disk, since data can be cached in the OS page cache. So we cannot say these reads are reads from disk. Some monitoring systems make this mistake, but there are cases that this nuance is essential for our analysis to produce correct results and conclusions.
-    - the names "blocks hit" and "blocks read" might be a little bit misleading, suggesting that here we talk about data volumes – number of blocks (buffers). While aggregation here definitely make sense, we must keep in mind that the same buffers may be read or hit multiple times. So instead of "blocks have been hit" it is better to say "block hits".
+    - The names "blocks hit" and "blocks read" might be a little bit misleading, suggesting that here we talk about data volumes – number of blocks (buffers). While aggregation here definitely make sense, we must keep in mind that the same buffers may be read or hit multiple times. So instead of "blocks have been hit" it is better to say "block hits".
 5. `wal_bytes` – how many bytes are written to WAL by queries in this group
 
 There are many more other interesting metrics, it is recommended to explore all of them (see [the docs](https://postgresql.org/docs/current/pgstatstatements.html)).
