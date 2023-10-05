@@ -33,9 +33,9 @@ If we deal with 2 snapshots, then it makes sense to obtain such values explicitl
 1. `%M`, where `M` is `calls` — this gives us proportions of QPS. For example, if we normally have `~10k QPS`, but if some query group is responsible for `~7k QPS`, this might be considered as abnormal, requiring optimizations on client side (usually, application code).
 
 2. `%M`, where `M` is `total_plan_time + total_exec_time` — percentage in time that the server spends to process queries in a particular group. For example, if the absolute value is `20 seconds/second` (quite a loaded system — each second Postgres needs to spend 20 seconds to process queries), and a particular group has 75% on this metric, it means we need to focus on optimizing this particular query group. Ways to optimize:
-    - if QPS (`calls/second`) is high, then, first of all, we need to reduce 
-    - if average latency (`total_exec_time`, less often `total_plan_time` or both) is high, then we need to apply micro-optimization using `EXPLAIN` and `EXPLAIN (ANALYZE, BUFFERS)`.
-    - in some cases, we need to combine both directions of optimization
+    - If QPS (`calls/second`) is high, then, first of all, we need to reduce. 
+    - If average latency (`total_exec_time`, less often `total_plan_time` or both) is high, then we need to apply micro-optimization using `EXPLAIN` and `EXPLAIN (ANALYZE, BUFFERS)`.
+    - In some cases, we need to combine both directions of optimization.
 
 3. `%M`, where `M` is `shared_blks_dirtied` — percentage of changes in the buffer pool performed by the considered query group. This analysis may help us identify the write-intensive parts of the workload and find opportunities to reduce the volume of checkpoints and amount of disk IO.
 
