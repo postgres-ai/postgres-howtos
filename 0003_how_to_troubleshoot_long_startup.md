@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1707466169245171773), [LinkedIn post](...). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1707466169245171773), [LinkedIn post](https://www.linkedin.com/pulse/how-troubleshoot-long-postgres-startup-nikolay-samokhvalov/). 
 
 ---
 

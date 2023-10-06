@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1708244676313317635), [LinkedIn post](...). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1708244676313317635), [LinkedIn post](https://www.linkedin.com/pulse/how-work-pgstatstatments-part-1-nikolay-samokhvalov/). 
 
 ---
 

@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1707147450044297673), [LinkedIn post](...). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1707147450044297673), [LinkedIn post](https://www.linkedin.com/pulse/how-troubleshoot-speed-up-postgres-stop-restart-nikolay-samokhvalov/). 
 
 ---
 
