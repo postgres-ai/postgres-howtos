@@ -81,7 +81,7 @@ perf top
 – and observe what's happening with the system as a whole. Note that many functions will appear in unreadable form such as `0x00000000001d6d88` – memory addresses of some functions which names cannot be resolved:
 
 <a href="./files/0010_perf_top_wo_debug_symbols.png">
-  <img src="./files/0010_perf_top_wo_debug_symbols.png" width="600"/>
+  <img src="./files/0010_perf_top_wo_debug_symbols.png" width="700"/>
 </a>
 
 This is because we don't have debug symbols for Postgres yet. Let's fix it.
@@ -107,7 +107,7 @@ Once packages with debug symbols are installed, it is important not to forget to
 Now `perf top` is going to look much better – all the Postgres-related lines have function names:
 
 <a href="./files/0010_perf_top_w_debug_symbols.png">
-  <img src="./files/0010_perf_top_w_debug_symbols.png" width="600"/>
+  <img src="./files/0010_perf_top_w_debug_symbols.png" width="700"/>
 </a>
 
 ## Step 3: Get FlameGraph tooling
@@ -159,7 +159,7 @@ That's it. Now you need to copy `profile.svg` to your machine and open it in, fo
 Here is the result for our process running an infinite EXPLAIN loop:
 
 <a href="./files/0010_flamegraph.png">
-  <img src="./files/0010_flamegraph.png" width="600"/>
+  <img src="./files/0010_flamegraph.png" width="700"/>
 </a>
 
 It's very interesting that ~35% of CPU time is spent to analyzing if `Merge Join` is worth using, while eventually the planner picks a `Nested Loop`:
