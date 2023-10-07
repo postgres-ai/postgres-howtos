@@ -158,11 +158,9 @@ That's it. Now you need to copy `profile.svg` to your machine and open it in, fo
 
 Here is the result for our process running an infinite EXPLAIN loop:
 
-<a href="./files/0010_flamegraph.svg">
+<a href="./files/0010_flamegraph.png">
   <img src="./files/0010_flamegraph.png" width="600"/>
 </a>
-
-(try clicking on it)
 
 It's very interesting that ~35% of CPU time is spent to analyzing if `Merge Join` is worth using, while eventually the planner picks a `Nested Loop`:
 ```
