@@ -79,6 +79,7 @@ perf top
 ```
 
 – and observe what's happening with the system as a whole. Note that many functions will appear in unreadable form such as `0x00000000001d6d88` – memory addresses of some functions which names cannot be resolved:
+
 <a href="./images/0010_perf_top_wo_debug_symbols.png"><img src="./images/0010_perf_top_wo_debug_symbols.png" width="600"/></a>
 
 
