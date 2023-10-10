@@ -37,7 +37,7 @@ Here is the recipe – and below we discuss it in detail.
     tmux a -t $TMUX_NAME || tmux new -s $TMUX_NAME
     ```
 
-2. Now, start collecting pgsa samples in a log every second infinitely (until we interrupt this process):
+2. Now, start collecting `pgsa` samples in a log every second infinitely (until we interrupt this process):
     ```shell
     while sleep 1; do
         psql -XAtc "
