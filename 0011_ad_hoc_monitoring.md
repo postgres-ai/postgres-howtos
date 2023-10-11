@@ -95,7 +95,7 @@ Or just redirect everything to a single file:
 command  &>>everything.log
 ```
 
-If you want to both see everything and log it, use `tee` – or, with append mode, `tee -a` (here, `2>&1` redirects `STDERR` to `SDTOUT` first, an then `tee` gets everything from `STDOUT`):
+If you want to both see everything and log it, use `tee` – or, with append mode, `tee -a` (here, `2>&1` redirects `STDERR` to `STDOUT` first, an then `tee` gets everything from `STDOUT`):
 ```shell
 commend 2>&1 | tee -a everything.log
 ```
