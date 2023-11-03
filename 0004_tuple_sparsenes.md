@@ -4,7 +4,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1707854750392455
 
 # Understanding how sparsely tuples are stored in a table
 
-<img src="files/0004_cover.jpg" width="600" />
+<img src="files/0004_cover.png" width="600" />
 
 Today, we'll discuss tuples and their locations in pages – this is quite entry-level material but useful in many cases.
 

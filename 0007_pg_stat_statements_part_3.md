@@ -8,7 +8,7 @@ Previous parts:
 - [part 1](./0005_pg_stat_statements_part_1.md)
 - [part 2](./0006_pg_stat_statements_part_2.md)
 
-<img src="files/0007_cover.jpg" width="600" />
+<img src="files/0007_cover.png" width="600" />
 
 ## 3rd type of derived metrics: percentage
 Now, let's examine the third type of derived metrics: the percentage that a considered query group (normalized query or bigger groups such as "all statements from particular user" or "all `UPDATE` statements") takes in the whole workload with respect to metric `M`.

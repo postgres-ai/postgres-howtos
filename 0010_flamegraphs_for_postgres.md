@@ -4,7 +4,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1710176204953919
 
 # How to troubleshoot Postgres performance using FlameGraphs and eBPF (or perf)
 
-<img src="files/0010_cover.jpg" width="600" />
+<img src="files/0010_cover.png" width="600" />
 
 Today we'll discuss how to understand what exactly a Postgres backend is doing inside CPU on a Linux machine (in-CPU analysis).
 

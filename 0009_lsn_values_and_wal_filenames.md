@@ -4,7 +4,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1709818510787162
 
 # How to understand LSN values and WAL filenames
 
-<img src="files/0009_cover.jpg" width="600" />
+<img src="files/0009_cover.png" width="600" />
 
 ## How to read LSN values
 LSN – Log Sequence Number, a pointer to a location in the Write-Ahead Log (WAL). Understanding it and how to work with it is important for dealing with physical and logical replication, backups, recovery. Postgres docs:
