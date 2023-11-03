@@ -4,6 +4,8 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1707147450044297
 
 # How to troubleshoot and speed up Postgres stop and restart attempts
 
+<img src="files/0002_cover.jpg" width="600" />
+
 #PostgresMarathon day 2. Let's discuss PostgreSQL shutdown and restarts. It's not uncommon to see quite long and even failed shutdown/restart attempts. If it's happening inside an incident troubleshooting, it often can provoke emotions and additional mistakes. 
 
 Some very popular reasons affecting the duration of the shutdown attempt:

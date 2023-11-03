@@ -4,6 +4,8 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1710176204953919
 
 # Ad-hoc monitoring
 
+<img src="files/00011_cover.jpg" width="600" />
+
 // I post a new PostgreSQL "howto" article every day. Join me in this journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
 
 In some cases, we need to observe some values in Postgres or the environment it's running on (OS, FS, etc.), and:

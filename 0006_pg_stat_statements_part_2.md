@@ -3,7 +3,10 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1708692950006612
 ---
 
 # How to work with pg_stat_statements, part 2
+
 Previous post: [0005_pg_stat_statements_part_1.md](./0005_pg_stat_statements_part_1.md).
+
+<img src="files/0006_cover.jpg" width="600" />
 
 Yesterday we discussed some basics of working with pgss, and the first set of derived metrics, `dM/dt` – time-based differentiation. Today we'll focus on the second set: `dM/dc`, where `c` is the number of calls (column `calls` in pgss). 
 

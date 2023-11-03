@@ -4,6 +4,8 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1709490130749378
 
 # How to speed up pg_dump when dumping large databases
 
+<img src="files/0008_cover.jpg" width="600" />
+
 After a series of rather hefty posts, let's take a breather with some lighter material.
 
 Today we'll discuss how to speed up `pg_dump` when dealing with large data volumes.
