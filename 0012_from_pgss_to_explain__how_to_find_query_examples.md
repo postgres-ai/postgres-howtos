@@ -4,7 +4,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1710176204953919
 
 # How to find query examples for problematic pg_stat_statements records
 
-<img src="files/0012_cover_01.png" width="600" />
+<img src="files/0012_cover_03.png" width="600" />
 
 // I post a new PostgreSQL "howto" article every day. Join me in this journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
 
