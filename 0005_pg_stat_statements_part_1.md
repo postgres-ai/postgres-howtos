@@ -4,7 +4,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1708244676313317
 
 # How to work with pg_stat_statements, part 1
 
-<img src="files/0005_cover.jpg" width="600" />
+<img src="files/0005_cover.png" width="600" />
 
 ## Two branches of query optimization
 There are two big branches of query optimization:
