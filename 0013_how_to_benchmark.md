@@ -4,7 +4,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1711237471743480
 
 # How to benchmark
 
-<img src="files/0013_cover_02.png" width="600" />
+<img src="files/0013_cover_03.png" width="600" />
 
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
