@@ -291,7 +291,6 @@ QUESTION: %s
 
  if response.status_code >= 400:
    raise Exception(f"Failed. Code: {response.status_code}. Response: {response.text}")
-   # raise Exception(f"Failed. Code: {response.status_code}. Response: {response}")
 
  return response.json()['choices'][0]['message']['content']
 $$ language plpython3u;

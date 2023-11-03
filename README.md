@@ -17,5 +17,11 @@ This project has been started by @NikolayS on 2023-09-26 https://twitter.com/sam
 
 ## ToC
 
-- 001 [`EXPLAIN ANALYZE` or `EXPLAIN (ANALYZE, BUFFERS)`?](./0001_explain_analyze_buffers.md)
-- ...
+- 0001 [`EXPLAIN ANALYZE` or `EXPLAIN (ANALYZE, BUFFERS)`?](./0001_explain_analyze_buffers.md)
+- 0002 [How to troubleshoot and speed up Postgres stop and restart attempts](./0002_how_to_troubleshoot_and_speedup_postgres_restarts.md)
+- 0003
+- 0004
+- 0005
+- 0006
+- 0007
+- 00

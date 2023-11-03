@@ -2,7 +2,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1717429427808911
 
 ---
 
-## How to deal with long-running transactions (OLTP)
+# How to deal with long-running transactions (OLTP)
 
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
@@ -28,7 +28,7 @@ table in the worst case – in the case when all transactions during that time f
 this is a very, very rough assumption, but this can give an idea about the scale and helps define "threshold" to support
 the meaning of the "long-running transaction" term.
 
-## How to prevent long-running transaction
+## How to prevent long-running transactions
 
 In some cases, we might decide to prevent long-running transactions from happening at a global level, to be protected
 from the negative effects described above – in this case, we decide that interrupting a long-running transaction,

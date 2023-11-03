@@ -2,7 +2,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1716359165806035
 
 ---
 
-## How to compile Postgres on Ubuntu 22.04
+# How to compile Postgres on Ubuntu 22.04
 
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!

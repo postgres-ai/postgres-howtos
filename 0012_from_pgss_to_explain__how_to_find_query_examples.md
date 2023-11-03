@@ -90,7 +90,7 @@ So – TBD. Meanwhile, check out these interesting resources:
 - pgtracer https://github.com/Aiven-Open/pgtracer (presentation on PostgresTV: https://youtube.com/watch?v=tvJgMV-8nfU)
 - Analyzing Postgres performance problems using perf and eBPF – a talk video where Andres Freund describes how to combine pg_stat_statements + BPF  https://youtu.be/HghP4D72Noc?si=tFuQuDWKrScJ8w2i&t=1389 (code: https://github.com/anarazel/pg-bpftrace)
 
-# Option 5: generic plans
+## Option 5: generic plans
 
 TBD:
 - new feature in pg16's EXPLAIN
