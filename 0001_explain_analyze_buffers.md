@@ -2,7 +2,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1706689567355732
 
 ---
 
-# EXPLAIN ANALYZE or EXPLAIN (ANALYZE, BUFFERS?
+# EXPLAIN ANALYZE or EXPLAIN (ANALYZE, BUFFERS)?
 
 When analyzing Postgres query execution plans, I always recommend using the `BUFFERS` option:
 ```sql
