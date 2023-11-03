@@ -2,7 +2,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1714153676212949
 
 ---
 
-## How to set application_name without extra queries
+# How to set application_name without extra queries
 
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!

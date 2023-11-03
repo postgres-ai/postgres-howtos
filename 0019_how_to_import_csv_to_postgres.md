@@ -2,6 +2,8 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1713392789462175
 
 ---
 
+# How to import CSV to Postgres
+
 ## Source CSV we'll be using as an example
 
 In the following import examples, we're going to use the following snippet, gathering information about long-running

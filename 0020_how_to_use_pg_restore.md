@@ -2,7 +2,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1713795383183474
 
 ---
 
-## How to use pg_restore
+# How to use pg_restore
 
 Today – a few tips on using `pg_restore` to restore databases (or only parts of them) from dumps.
 Docs: https://postgresql.org/docs/current/app-pgrestore.html.

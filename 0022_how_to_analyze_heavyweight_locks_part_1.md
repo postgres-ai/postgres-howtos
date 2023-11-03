@@ -2,7 +2,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1714543861975204
 
 ---
 
-## How to analyze heavyweight locks, part 1
+# How to analyze heavyweight locks, part 1
 
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!

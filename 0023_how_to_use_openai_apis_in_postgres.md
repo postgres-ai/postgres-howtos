@@ -2,7 +2,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1714958281989554
 
 ---
 
-## How to use OpenAI APIs right from Postgres to implement semantic search and GPT chat
+# How to use OpenAI APIs right from Postgres to implement semantic search and GPT chat
 
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
@@ -275,7 +275,7 @@ CONTEXT (git commits):
 QUESTION: %s
 """ % (data_to_embed[:2000], question)
 
- # W: this code lacks error handling
+ ### W: this code lacks error handling
  response = http://requests.post(
    'https://api.openai.com/v1/chat/completions',
    headers={ 'Authorization': f'Bearer {api_key}' },
