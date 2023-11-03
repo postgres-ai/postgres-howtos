@@ -11,10 +11,6 @@ This project has been started by @NikolayS on 2023-09-26 https://twitter.com/sam
 
 [Subscribe](https://twitter.com/samokhvalov/status/1706748070967624174), like, share, and wish me luck with this -- and let's go! 🏊‍♂️
 
-## Contributors
-
-- Some tweets converted to markdown by @msdousti (thanks!)
-
 ## ToC
 <!-- To build it using LLM, use this prompt:
 """
@@ -57,3 +53,8 @@ Format the response as markdown.
 - 0028 [How to work with arrays, part 1](./0028_how_to_work_with_arrays_part_1.md)
 - 0029 [How to work with arrays, part 2](./0029_how_to_work_with_arrays_part_2.md)
 - 0030 [How to deal with long-running transactions (OLTP)](./0030_how_to_deal_with_long-running_transactions_oltp.md)
+- ... (WIP)
+
+## Contributors
+
+- Some tweets converted to markdown by @msdousti (thanks!)
