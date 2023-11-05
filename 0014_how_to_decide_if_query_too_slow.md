@@ -2,7 +2,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1711575029006418
 
 ---
 
-# How to decide when query is too slow and needs optimization
+# How to decide when a query is too slow and needs optimization
 
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
