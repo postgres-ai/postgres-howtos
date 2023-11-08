@@ -20,6 +20,10 @@ Don't provide any additional comments – I need just the the data to insert to 
 Format the response as markdown.
 
 {{ and here provide the output of:  `grep "^ *# " *.md` }}
+
+As an example, first 2 rows:
+- 0001 [`EXPLAIN ANALYZE` or `EXPLAIN (ANALYZE, BUFFERS)`?](./0001_explain_analyze_buffers.md)
+- 0002 [How to troubleshoot and speed up Postgres stop and restart attempts](./0002_how_to_troubleshoot_and_speedup_postgres_restarts.md)
 """
 -->
 
@@ -53,7 +57,20 @@ Format the response as markdown.
 - 0028 [How to work with arrays, part 1](./0028_how_to_work_with_arrays_part_1.md)
 - 0029 [How to work with arrays, part 2](./0029_how_to_work_with_arrays_part_2.md)
 - 0030 [How to deal with long-running transactions (OLTP)](./0030_how_to_deal_with_long-running_transactions_oltp.md)
-- ... (WIP)
+- 0031 [How to troubleshoot a growing pg_wal directory](./0031_how_to_troubleshoot_a_growing_pg_wal_directory.md)
+- 0032 [How to speed up bulk load](./0032_how_to_speed_up_bulk_load.md)
+- 0033 [How to redefine a PK without downtime](./0033_how_to_redefine_a_PK_without_downtime.md)
+- 0034 [How to perform initial / rough Postgres tuning](./0034_how_to_perform_postgres_tuning.md)
+- 0035 [How to use subtransactions in Postgres](./0035_how_to_use_subtransactions_in_postgres.md)
+- 0036 ["Find-or-insert" using a single query](./0036_find-or-insert_using_a_single_query.md)
+- 0037 [How to enable data checksums without downtime](./0037_how_to_enable_data_checksums_without_downtime.md)
+- 0038 [How to NOT get screwed as a DBA (DBRE)](./0038_how_to_not_get_screwed_as_a_dba.md)
+- 0039 [How to break a database, Part 1: How to corrupt](./0039_how_to_break_a_database_part_1_how_to_corrupt.md)
+- 0040 [How to break a database, Part 2: Simulate infamous transaction ID wraparound](./0040_how_to_break_a_database_part_2_simulate_xid_wraparound.md)
+- 0041 [How to break a database, Part 3: Harmful workloads](./0041_harmful_workloads.md)
+- 0042 [How to analyze heavyweight locks, part 2: Lock trees (a.k.a. "lock queues", "wait queues", "blocking chains")](./0042_how_to_analyze_heavyweight_locks_part_2.md)
+- 0043 [How to format SQL](./0043_how_to_format_sql.md)
+- ...
 
 ## Contributors
 
