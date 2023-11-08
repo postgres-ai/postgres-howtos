@@ -88,7 +88,7 @@ on "non-transactional" DDL such as
 
 A big problem with DDL deployment under load is that by default, you can have downtime attempting to deploy a very light
 schema change – unless you implement a logic with low `lock_timeout` and retries (
-see: [zero-downtime postgres schema migrations lock timeout and retries](https://postgres.ai/blog/20210923-zero-downtime-postgres-schema-migrations-lock-timeout-and-retries)).
+see: [Zero-downtime Postgres schema migrations need this: lock timeout and retries](https://postgres.ai/blog/20210923-zero-downtime-postgres-schema-migrations-lock-timeout-and-retries)).
 
 ## DELETE a lot of rows with one command
 
