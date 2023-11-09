@@ -15,9 +15,9 @@ There are various approaches to formatting SQL. There two major ones are:
 
    ```sql
    SELECT a.title, a.release_date, a.recording_date
-      FROM albums AS a
-   WHERE a.title = 'Charcoal Lane'
-            OR a.title = 'The New Danger';
+     FROM albums AS a
+    WHERE a.title = 'Charcoal Lane'
+       OR a.title = 'The New Danger';
    ```
 
    I personally find this style very old-fashioned, inconvenient, and cumbersome, and I prefer another one:
