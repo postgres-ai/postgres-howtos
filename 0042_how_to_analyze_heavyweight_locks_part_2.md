@@ -39,7 +39,7 @@ with recursive activity as (
     *,
     age(clock_timestamp(), xact_start)::interval(0) as tx_age,
     -- "pg_locks.waitstart" – PG14+ only; for older versions:  age(clock_timestamp(), state_change) as wait_age
-    age(clock_timestamp(), (select max(l.waitstart) from pg_locks l where http://a.pid = http://l.pid))::interval(0) as wait_age
+    age(clock_timestamp(), (select max(l.waitstart) from pg_locks l where a.pid = l.pid))::interval(0) as wait_age
   from pg_stat_activity a
   where state is distinct from 'idle'
 ), blockers as (
@@ -53,9 +53,9 @@ with recursive activity as (
   select
     activity.*,
     1 as level,
-    http://activity.pid as top_blocker_pid,
-    array[http://activity.pid] as path,
-    array[http://activity.pid]::int[] as all_blockers_above
+    activity.pid as top_blocker_pid,
+    array[activity.pid] as path,
+    array[activity.pid]::int[] as all_blockers_above
   from activity, blockers
   where
     array[pid] <@ blockers.pids
@@ -64,12 +64,12 @@ with recursive activity as (
   select
     activity.*,
     tree.level + 1 as level,
-    http://tree.top_blocker_pid,
-    path || array[http://activity.pid] as path,
-    tree.all_blockers_above || array_agg(http://activity.pid) over () as all_blockers_above
+    tree.top_blocker_pid,
+    path || array[activity.pid] as path,
+    tree.all_blockers_above || array_agg(activity.pid) over () as all_blockers_above
   from activity, tree
   where
-    not array[http://activity.pid] <@ tree.all_blockers_above
+    not array[activity.pid] <@ tree.all_blockers_above
     and activity.blocked_by <> '{}'::int[]
     and activity.blocked_by <@ tree.all_blockers_above
 )
@@ -84,7 +84,7 @@ select
   to_char(2147483647 - age(backend_xmin), 'FM999,999,999,990') as xmin_ttf,
   datname,
   usename,
-  (select count(distinct http://t1.pid) from tree t1 where array[http://tree.pid] <@ t1.path and http://t1.pid <> http://tree.pid) as blkd,
+  (select count(distinct t1.pid) from tree t1 where array[tree.pid] <@ t1.path and t1.pid <> tree.pid) as blkd,
   format(
     '%s %s%s',
     lpad('[' || pid::text || ']', 9, ' '),
