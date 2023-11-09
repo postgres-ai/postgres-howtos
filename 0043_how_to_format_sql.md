@@ -186,10 +186,10 @@ limit 10;
 
 ```sql
   select client_id,
-                submission_date
-     from main_summary
-  where sample_id = '42'
-       and submission_date > '20180101';
+         submission_date
+    from main_summary
+   where sample_id = '42'
+     and submission_date > '20180101';
 ```
 
 ## 5) Code blocks
