@@ -16,7 +16,7 @@ This project has been started by @NikolayS on 2023-09-26 https://twitter.com/sam
 """
 I want to build ToC for these files in Git. help.
 Notice the numbers in the beginning 0001, 0002, etc.
-Don't provide any additional comments – I need just the the data to insert to README.
+Don't provide any additional comments – I need just the data to insert to README.
 Format the response as markdown.
 
 {{ and here provide the output of:  `grep "^ *# " *.md` }}
@@ -70,6 +70,7 @@ As an example, first 2 rows:
 - 0041 [How to break a database, Part 3: Harmful workloads](./0041_harmful_workloads.md)
 - 0042 [How to analyze heavyweight locks, part 2: Lock trees (a.k.a. "lock queues", "wait queues", "blocking chains")](./0042_how_to_analyze_heavyweight_locks_part_2.md)
 - 0043 [How to format SQL](./0043_how_to_format_sql.md)
+- 0044 [How to monitor transaction ID wraparound risks](./0044_how_to_monitor_transaction_id_wraparound_risks.md)
 - ...
 
 ## Contributors
