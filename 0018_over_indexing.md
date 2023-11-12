@@ -7,13 +7,12 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1713101666629927
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
 
-Everyone knows that each additional index is going to slow down writes (`INSERT`, `UPDATE` – unless it's **HOT** –
-and `DELETE`).
+Everyone knows that each additional index is going to slow down writes (`INSERT`, `UPDATE` – unless it's **HOT**).
 But bear with me today and I promise you'll be very surprised.
 
 ## Indexes and write overhead
 
-Obviously, if you create a new index, then with each write (`INSERT`, `DELETE`, `UPDATE`), Postgres needs to update this
+Obviously, if you create a new index, then with each statement changing rows (`INSERT`, `UPDATE`), Postgres needs to update this
 index too – this means, write statements are going to take longer to execute.
 
 For `UPDATE`s, there is a special optimization – **HOT updates**, **Heap-Only-Tuple updates** – that might let Postgres
