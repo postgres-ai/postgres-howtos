@@ -12,8 +12,7 @@ But bear with me today and I promise you'll be very surprised.
 
 ## Indexes and write overhead
 
-Obviously, if you create a new index, then with each statement changing rows (`INSERT`, `UPDATE`), Postgres needs to update this
-index too – this means, write statements are going to take longer to execute.
+Obviously, if you create a new index, then with each statement that produces new row versions (`INSERT`, `UPDATE`), Postgres needs to update this index too – this means, write statements are going to take longer to execute.
 
 For `UPDATE`s, there is a special optimization – **HOT updates**, **Heap-Only-Tuple updates** – that might let Postgres
 avoid such overhead. This can happen if two conditions are met:
