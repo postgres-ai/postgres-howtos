@@ -74,6 +74,7 @@ As an example, first 2 rows:
 - 0045 [How to monitor xmin horizon to prevent XID/MultiXID wraparound and high bloat](./0045_how_to_monitor_xmin_horizon.md)
 - 0046 [How to deal with bloat](./0046_how_to_deal_with_bloat.md)
 - 0047 [How to install Postgres 16 with plpython3u: Recipes for macOS, Ubuntu, Debian, CentOS, Docker](./0047_how_to_install_postgres_16_with_plpython3u.md)
+- 0048 [How to generate fake data](./0048_how_to_generate_fake_data.md)
 - ...
 
 ## Contributors
