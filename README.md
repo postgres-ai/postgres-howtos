@@ -75,6 +75,7 @@ As an example, first 2 rows:
 - 0046 [How to deal with bloat](./0046_how_to_deal_with_bloat.md)
 - 0047 [How to install Postgres 16 with plpython3u: Recipes for macOS, Ubuntu, Debian, CentOS, Docker](./0047_how_to_install_postgres_16_with_plpython3u.md)
 - 0048 [How to generate fake data](./0048_how_to_generate_fake_data.md)
+- 0049 [How to use variables in psql scripts](./0049_how_to_use_variables_in_psql_scripts.md)
 - ...
 
 ## Contributors
