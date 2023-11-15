@@ -56,7 +56,7 @@ To avoid it, use `libpq`'s options.
 
 (`-X` means `ignore .psqlrc`, which is a good practice for automation scripts involving `psql`.)
 
-## Method 2: throught connection URI
+## Method 2: through connection URI
 
 ```bash
 ❯ psql \
