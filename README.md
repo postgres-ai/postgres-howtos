@@ -76,6 +76,8 @@ As an example, first 2 rows:
 - 0047 [How to install Postgres 16 with plpython3u: Recipes for macOS, Ubuntu, Debian, CentOS, Docker](./0047_how_to_install_postgres_16_with_plpython3u.md)
 - 0048 [How to generate fake data](./0048_how_to_generate_fake_data.md)
 - 0049 [How to use variables in psql scripts](./0049_how_to_use_variables_in_psql_scripts.md)
+- 0050 [Pre- and post-steps for benchmark iterations](./0050_pre_and_post_steps_for_benchmark_iterations.md)
+- 0051 [Learn how to work with schema metadata by spying after psql](./0051_learn_about_schema_metadata_via_psql.md)
 - ...
 
 ## Contributors
