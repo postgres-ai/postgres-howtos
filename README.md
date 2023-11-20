@@ -78,6 +78,9 @@ As an example, first 2 rows:
 - 0049 [How to use variables in psql scripts](./0049_how_to_use_variables_in_psql_scripts.md)
 - 0050 [Pre- and post-steps for benchmark iterations](./0050_pre_and_post_steps_for_benchmark_iterations.md)
 - 0051 [Learn how to work with schema metadata by spying after psql](./0051_learn_about_schema_metadata_via_psql.md)
+- 0052 [How to reduce WAL generation rates](./0052_how_to_reduce_wal_generation_rates.md)
+- 0053 [Index maintenance](./0053_index_maintenance.md)
+- 0054 [How to check btree indexes for corruption (pg_amcheck)](./0054_how_to_check_btree_indexes_for_corruption.md)
 - ...
 
 ## Contributors
