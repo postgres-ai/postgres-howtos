@@ -9,7 +9,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1714958281989554
 
 <img src="files/0025_elephant_with_sunglasses.jpg" width="600" />
 
-Today we will:
+Today we will implement RAG ([Retrieval Augmented Generation](https://en.wikipedia.org/wiki/Prompt_engineering#Retrieval-augmented_generation])) right in Postgres:
 
 1. Load full Postgres commit history to a Postgres table
 2. Using `plpython3u` (N/A on some managed services, such as RDS), start calling OpenAI APIs right from Postgres. 
