@@ -81,6 +81,7 @@ As an example, first 2 rows:
 - 0052 [How to reduce WAL generation rates](./0052_how_to_reduce_wal_generation_rates.md)
 - 0053 [Index maintenance](./0053_index_maintenance.md)
 - 0054 [How to check btree indexes for corruption (pg_amcheck)](./0054_how_to_check_btree_indexes_for_corruption.md)
+- 0055 [How to drop a column](./0055_how_to_drop_a_column.md)
 - ...
 
 ## Contributors
