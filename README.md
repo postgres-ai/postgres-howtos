@@ -82,6 +82,7 @@ As an example, first 2 rows:
 - 0053 [Index maintenance](./0053_index_maintenance.md)
 - 0054 [How to check btree indexes for corruption (pg_amcheck)](./0054_how_to_check_btree_indexes_for_corruption.md)
 - 0055 [How to drop a column](./0055_how_to_drop_a_column.md)
+- 0056 [How to make the non-production Postgres planner behave like in production](./0056_how_to_imitate_production_planner.md)
 - ...
 
 ## Contributors
