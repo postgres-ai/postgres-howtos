@@ -94,7 +94,7 @@ Since Postgres 13, both `pg_stat_statements` and `EXPLAIN` can provide WAL-relat
 
 ## Full-page writes
 
-The "fpi" metrics in both `pg_stat_statements` and `EXPLAIN` results show how many full-page inserts (full-page writes)
+The "fpi" metrics in both `pg_stat_statements` and `EXPLAIN` results show how many full-page images (full-page writes)
 happened.
 
 If configuration parameter `full_page_write` is `on` (it is so by default; check it: `show full_page_writes;`), then
