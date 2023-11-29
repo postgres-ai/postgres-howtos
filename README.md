@@ -83,6 +83,12 @@ As an example, first 2 rows:
 - 0054 [How to check btree indexes for corruption (pg_amcheck)](./0054_how_to_check_btree_indexes_for_corruption.md)
 - 0055 [How to drop a column](./0055_how_to_drop_a_column.md)
 - 0056 [How to make the non-production Postgres planner behave like in production](./0056_how_to_imitate_production_planner.md)
+- 0057 [How to convert a physical replica to logical](./0057_how_to_convert_a_physical_replica_to_logical.md)
+- 0058 [How to use Docker to run Postgres](./0058_how_to_use_docker_to_run_postgres.md)
+- 0059 [psql tuning](./0059_psql_tuning.md)
+- 0060 [How to add a column](./0060_how_to_add_a_column.md)
+- 0061 [How to create an index, part 1](./0061_how_to_create_an_index_part_1.md)
+- 0062 [How to create an index, part 2](./0062_how_to_create_an_index_part_2.md)
 - ...
 
 ## Contributors
