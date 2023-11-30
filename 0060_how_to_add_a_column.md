@@ -168,3 +168,32 @@ and we still need to backfill. This has to be done in batches, to avoid long-las
    ```sql
    drop index concurrently i_t1_id_new;
    ```
+
+-----
+
+## Correction regarding the internals of how DEFAULT values are stored
+
+- `pg_attrdef` stores all current defaults. When we change `DEFAULT` for an existing column, this catalog is updated to
+  store the new value:
+
+   ```sql
+   nik=# alter table t1 alter column c2 set default -30;
+   ALTER TABLE
+  
+   nik=# select pg_get_expr(adbin, 't1'::regclass::oid) from pg_attrdef;
+     pg_get_expr
+   ----------------
+    '-30'::integer
+   (1 row)
+   ```
+
+   And the value stored in `pg_attribute` in `attmissingval` is that one that is used for the rows that existed before
+   column was created:
+
+   ```sql
+   nik=# select attmissingval from pg_attribute where attrelid = 't1'::regclass::oid and attname = 'c2';
+    attmissingval
+   ---------------
+    {-10}
+   (1 row)
+   ```
