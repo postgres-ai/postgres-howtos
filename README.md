@@ -89,6 +89,8 @@ As an example, first 2 rows:
 - 0060 [How to add a column](./0060_how_to_add_a_column.md)
 - 0061 [How to create an index, part 1](./0061_how_to_create_an_index_part_1.md)
 - 0062 [How to create an index, part 2](./0062_how_to_create_an_index_part_2.md)
+- 0063 [How to help others](./0063_how_to_help_others.md)
+- 0064 [How to use UUID](./0064_how_to_use_uuid.md)
 - ...
 
 ## Contributors
