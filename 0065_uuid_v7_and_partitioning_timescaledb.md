@@ -122,7 +122,7 @@ create table my_table (
 );
 ```
 
-The default value `00000000-...00` for "id" is "fake" – it will always be replaced in trigger, based on the timestamp:
+The default value `00000000-...00` for `id` is "fake" – it will always be replaced in trigger, based on the timestamp:
 
 ```sql
 create or replace function t_update_uuid() returns trigger
@@ -191,29 +191,33 @@ Child tables: _timescaledb_internal._hyper_2_3_chunk,
 
 ## Test queries – partition pruning
 
-Now we just need to remember that `created_at` should always participate in queries, to let planner deal with as few
-partitions as possible – but knowing the `id` values, we can always reconstruct the `created_at` values, using 
-`uuid_v7_to_ts()`:
+Now we just need to remember that `uuid_ts` should always participate in queries, to let planner deal with as few
+partitions as possible – but knowing the `id` values, we can always reconstruct the `uuid_ts` values, using 
+`uuid_v7_to_ts()`. Note that I first disabled `seqscan` as the table `my_table` has too few rows, otherwise PostgreSQL 
+may decide on preferring `seqscan` over index scan:
 
 ```sql
-test=# explain select * from my_table where created_at = uuid_v7_to_ts('00dc6ad0-9660-7b92-a95e-1d7afdaae659');
+test# set enable_seqscan = off;
+SET
+
+test=# explain select * from my_table where uuid_ts = uuid_v7_to_ts('00dc6ad0-9660-7b92-a95e-1d7afdaae659');
                                                         QUERY PLAN
 --------------------------------------------------------------------------------------------------------------------------
  Append  (cost=0.14..8.16 rows=1 width=41)
-   ->  Index Scan using _hyper_5_11_chunk_my_table_created_at_idx on _hyper_5_11_chunk  (cost=0.14..8.15 rows=1 width=41)
-         Index Cond: (created_at = '2000-01-01 00:01:00+00'::timestamp with time zone)
+   ->  Index Scan using _hyper_5_11_chunk_my_table_uuid_ts_idx on _hyper_5_11_chunk  (cost=0.14..8.15 rows=1 width=41)
+         Index Cond: (uuid_ts = '2000-01-01 00:01:00+00'::timestamp with time zone)
 (3 rows)
 
 test=# explain select * from my_table
-  where created_at >= uuid_v7_to_ts('018c1ecb-d3b7-75b1-add9-62878b5152c7')
-  order by created_at desc limit 10;
+  where uuid_ts >= uuid_v7_to_ts('018c1ecb-d3b7-75b1-add9-62878b5152c7')
+  order by uuid_ts desc limit 10;
                                                             QUERY PLAN
 -----------------------------------------------------------------------------------------------------------------------------------
  Limit  (cost=0.29..1.17 rows=10 width=41)
    ->  Custom Scan (ChunkAppend) on my_table  (cost=0.29..11.49 rows=126 width=41)
-         Order: my_table.created_at DESC
-         ->  Index Scan using _hyper_5_16_chunk_my_table_created_at_idx on _hyper_5_16_chunk  (cost=0.29..11.49 rows=126 width=41)
-               Index Cond: (created_at >= '2023-11-30 05:55:23.703+00'::timestamp with time zone)
+         Order: my_table.uuid_ts DESC
+         ->  Index Scan using _hyper_5_16_chunk_my_table_uuid_ts_idx on _hyper_5_16_chunk  (cost=0.29..11.49 rows=126 width=41)
+               Index Cond: (uuid_ts >= '2023-11-30 05:55:23.703+00'::timestamp with time zone)
 (5 rows)
 ```
 
