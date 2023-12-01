@@ -91,6 +91,8 @@ As an example, first 2 rows:
 - 0062 [How to create an index, part 2](./0062_how_to_create_an_index_part_2.md)
 - 0063 [How to help others](./0063_how_to_help_others.md)
 - 0064 [How to use UUID](./0064_how_to_use_uuid.md)
+- 0065 [UUID v7 and partitioning (TimescaleDB)](./0065_uuid_v7_and_partitioning_timescaledb.md)
+- 0066 [How many tuples can be inserted in a page](./0066_how_many_tuples_can_be_inserted_in_a_page.md)
 - ...
 
 ## Contributors
