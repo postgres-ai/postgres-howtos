@@ -139,4 +139,4 @@ order by status, relation;
 
 Example of the output (running it in psql with `\gx` instead of `;` in the end):
 
-![tables to be autovacuumed](./files/0068_tables_to_be_autovacuumed.png)
+![tables to be autovacuumed](./files/0067_tables_to_be_autovacuumed.png)
