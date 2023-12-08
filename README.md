@@ -94,6 +94,8 @@ As an example, first 2 rows:
 - 0065 [UUID v7 and partitioning (TimescaleDB)](./0065_uuid_v7_and_partitioning_timescaledb.md)
 - 0066 [How many tuples can be inserted in a page](./0066_how_many_tuples_can_be_inserted_in_a_page.md)
 - 0067 [Autovacuum "queue" and progress](./0067_autovacuum_queue_and_progress.md)
+- 0068 [psql shortcuts](./0068_psql_shortcuts.md)
+- 0069 [How to add a CHECK constraint without downtime](./0069_howd_tod_addd_ad_checkd_constraintd_withoutd_downtime.md)
 - ...
 
 ## Contributors
