@@ -96,6 +96,10 @@ As an example, first 2 rows:
 - 0067 [Autovacuum "queue" and progress](./0067_autovacuum_queue_and_progress.md)
 - 0068 [psql shortcuts](./0068_psql_shortcuts.md)
 - 0069 [How to add a CHECK constraint without downtime](./0069_howd_tod_addd_ad_checkd_constraintd_withoutd_downtime.md)
+- 0070 [How to add a foreign key](./0070_how_to_add_a_foreign_key.md)
+- 0071 [How to understand what's blocking DDL](./0071_how_to_understand_what_is_blocking_ddl.md)
+- 0072 [How to remove a foreign key](./0072_how_to_remove_a_foreign_key.md)
+- 0073 [How to analyze heavyweight locks, part 3. Persistent monitoring](./0073_how_to_analyze_heavyweight_locks_part_3_persistent_monitoring.md)
 - ...
 
 ## Contributors
