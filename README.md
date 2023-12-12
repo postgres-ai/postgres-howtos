@@ -100,6 +100,9 @@ As an example, first 2 rows:
 - 0071 [How to understand what's blocking DDL](./0071_how_to_understand_what_is_blocking_ddl.md)
 - 0072 [How to remove a foreign key](./0072_how_to_remove_a_foreign_key.md)
 - 0073 [How to analyze heavyweight locks, part 3. Persistent monitoring](./0073_how_to_analyze_heavyweight_locks_part_3_persistent_monitoring.md)
+- 0074 [How to flush caches (OS page cache and Postgres buffer pool)](./0074_how_to_flush_caches.md)
+- 0075 [How to find redundant indexes](./0076_how_to_find_redundent_indexes)
+- 0076 [How to find unused indexes](./0076_how_to_find_redundent_indexes.md)
 - ...
 
 ## Contributors
