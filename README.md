@@ -103,6 +103,9 @@ As an example, first 2 rows:
 - 0074 [How to flush caches (OS page cache and Postgres buffer pool)](./0074_how_to_flush_caches.md)
 - 0075 [How to find redundant indexes](./0076_how_to_find_redundent_indexes)
 - 0076 [How to find unused indexes](./0076_how_to_find_redundent_indexes.md)
+- 0077 [Postgres major upgrade without any downtime for a very large cluster running under heavy load](./0077_zero_downtime_major_upgrade.md)
+- 0078 [How to estimate the YoY growth of a very large table using row creation timestamps and the planner statistics](./0078_estimate_yoy_table_growth.md)
+- 0079 [How to rebuild many indexes using many backends avoiding deadlocks](./0079_rebuild_indexes_without_deadlocks.md)
 - ...
 
 ## Contributors
