@@ -106,6 +106,12 @@ As an example, first 2 rows:
 - 0077 [Postgres major upgrade without any downtime for a very large cluster running under heavy load](./0077_zero_downtime_major_upgrade.md)
 - 0078 [How to estimate the YoY growth of a very large table using row creation timestamps and the planner statistics](./0078_estimate_yoy_table_growth.md)
 - 0079 [How to rebuild many indexes using many backends avoiding deadlocks](./0079_rebuild_indexes_without_deadlocks.md)
+- 0080 [How to find int4 PKs with out-of-range risks in a large database](./0080_how_to_find_int4_pks_with_out_of_range_risks.md)
+- 0081 [How to plot graphs right in psql on macOS (iTerm2)](./0081_how_to_plot_graphs_right_in_psql_on_macos_iterm2.md)
+- 0082 [How to draw frost patterns using SQL ❄️](./0082_how_to_draw_frost_patterns_using_sql.md)
+- 0083 [How to quickly check data type and storage size of a value](./0083_how_to_quickly_check_data_type_and_storage_size_of_a_value.md)
+- 0084 [How to find the best order of columns to save on storage ("Column Tetris")](./0084_how_to_find_the_best_order_of_columns_to_save_on_storage.md)
+- 0085 [How to quickly check data type and storage size of a value](./0085_how_to_quickly_check_data_type_and_storage_size_of_a_value.md)
 - ...
 
 ## Contributors
