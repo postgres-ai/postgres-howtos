@@ -105,9 +105,10 @@ doing so, you can "pack" 64 booleans inside a single `int8` value.
 A couple of more examples:
 
 ```sql
-postgres=# with avg_temp(month, san_diego, vancouver, london) as (
-----------------
-              8
+nik=# select pg_column_size(interval '1s');
+pg_column_size
+---------------
+             8
 (1 row)
 
 nik=# select pg_column_size(interval '1s');
