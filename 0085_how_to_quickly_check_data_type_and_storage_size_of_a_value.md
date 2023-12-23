@@ -105,7 +105,7 @@ doing so, you can "pack" 64 booleans inside a single `int8` value.
 A couple of more examples:
 
 ```sql
-nik=# select pg_column_size(interval '1s');
+nik=# select pg_column_size(now());
 pg_column_size
 ---------------
              8
