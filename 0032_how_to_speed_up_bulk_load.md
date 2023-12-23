@@ -51,10 +51,7 @@ state should be done with care.
 If this is a new table, consider completely avoiding WAL writes during the data load. Two options (both have limitations
 and require understanding that data can be lost if a crash happens):
 
-- Use unlogged table: `CREATE UNLOGGED TABLE …`. Unlogged tables are not archived, not replicated, they are not
-  persistent (though, they survive normal restarts). Converting an unlogged table to a normal one takes time, because
-  the data needs to be written to WAL. More about unlogged tables in
-  [this post](https://crunchydata.com/blog/postgresl-unlogged-tables).
+- Use unlogged table: `CREATE UNLOGGED TABLE …`. Unlogged tables are not archived, not replicated, they are not persistent (though, they survive normal restarts). However, converting an unlogged table to a normal one takes time (likely, a lot – worth testing), because he data needs to be written to WAL. More about unlogged tables in [this post](https://crunchydata.com/blog/postgresl-unlogged-tables); also, see [this StackOverflow discussion](https://dba.stackexchange.com/questions/195780/set-postgresql-table-to-logged-after-data-loading/195829#195829).
 
 - Use `COPY` with `wal_level ='minimal'`. `COPY` has to be executed inside the transaction that created the table.
   In this case, due to `wal_level ='minimal'`, `COPY` writes won't be written to WAL
