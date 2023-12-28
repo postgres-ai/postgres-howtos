@@ -67,7 +67,7 @@ It is possible to find examples in the Postgres log – of course, if they are l
 1. For PG14+, option [compute_query_id](https://postgresqlco.nf/doc/en/param/compute_query_id/) can provide the same queryid value that is used in pg_stat_statements, to the log entry. 
 2. Alternatively, we can use an excellent library [libpg_query](https://github.com/pganalyze/libpg_query; Ruby, Go, Python and other options are also available). It can be applied both to normalized (`pgss` records) and individual queries, producing so-called fingerprint, that can be then used to find the relationships we need.
 
-In general, using Postgres logs to find query examples is a good method, but for heavily-loaded systems, where it is impossible to log all queries, it is going to supply us with very slow examples only – those that exceed [log_min_duration_statatement](https://postgresqlco.nf/doc/en/param/log_min_duration_statement/) (usually set to some quite high value, e.g. `500ms`).
+In general, using Postgres logs to find query examples is a good method, but for heavily-loaded systems, where it is impossible to log all queries, it is going to supply us with very slow examples only – those that exceed [log_min_duration_statement](https://postgresqlco.nf/doc/en/param/log_min_duration_statement/) (usually set to some quite high value, e.g. `500ms`).
 
 This situation can be improved with sampling and lowering the threshold for slow queries or even getting rid of it completely. Parameters for it:
 - [log_min_duration_sample](https://postgresqlco.nf/doc/en/param/log_min_duration_sample/) (PG13+) 
