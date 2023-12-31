@@ -7,24 +7,6 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1734467240832201
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
 
----------
-🛠️ **Correction:** In [Day 75: How to find unused indexes](0075_how_to_find_unused_indexes.md), the provided "simple"
-version of the query finding unused indexes lacked an important filter to exclude unique indexes. Of course, unique
-indexes must be excluded from consideration – even if such an index is not used, it has an important role. The corrected
-version:
-
-```sql
-select *
-from pg_stat_user_indexes
-where
-  idx_scan = 0
-  and not indisunique;
-```
-
-The "advanced" version of the query provided in the post includes this filter.
-
----------
-
 Let's discuss today how to find and clean up redundant indexes.
 
 ## What is a redundant index?

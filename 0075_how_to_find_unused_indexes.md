@@ -59,7 +59,9 @@ A basic query is simple:
 ```sql
 select *
 from pg_stat_user_indexes
-where idx_scan = 0;
+where
+  idx_scan = 0
+  and not indisunique;
 ```
 
 How to understand how long ago the stats were last reset:
