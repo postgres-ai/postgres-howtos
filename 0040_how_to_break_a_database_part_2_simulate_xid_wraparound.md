@@ -140,7 +140,7 @@ Everyone should not only monitor (with alerting) for traditional XID wraparound 
 risks. And it should be included in the snippets showing how much of the "capacity" is used.
 
 > 🎯 **TODO:** snippet to show both XID w-d and MultiXID w-d, at both DB and table level
-> Obviously, multixid wraparrounds are encountered less often in the wild – I don't see people have `datminmxid` and
+> Obviously, multixid wraparounds are encountered less often in the wild – I don't see people have `datminmxid` and
 > `relminmxid` used in the snippets.
 > Basic version:
 >

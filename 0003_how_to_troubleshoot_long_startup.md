@@ -159,7 +159,7 @@ Bonus: how to simulate long startup / REDO time:
 1. Increase the distance between checkpoints raising `max_wal_size` and `checkpoint_timeout` (say, `'100GB'` and `'60min'`)
 2. Create a large table `t1` (say, 10-100M rows): `create table t1 as select i, random() from generate_series(1, 100000000) i;`
 3. Execute a long transaction to data from `t1` (not necessary to finish it): `begin; delete from t1;`
-4. Observe the amount of dirity buffers with extension `pg_buffercache`:
+4. Observe the amount of dirty buffers with extension `pg_buffercache`:
    -  create extension `pg_buffercache`;
    - `select isdirty, count(*), pg_size_pretty(count(*) * 8 * 1024) from pg_buffercache  group by 1 \watch`
 5. When the total size of dirty buffers reaches a few GiB, intentionally crash your server, sending `kill -9 <pid>` using PID of any Postgres backend process.

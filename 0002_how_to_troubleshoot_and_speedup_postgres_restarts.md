@@ -38,7 +38,7 @@ The second reason – a lot of dirty buffers in the buffer pool – is less triv
 - checkpoint tuning was performed in favor of fewer overheads of bulk random writes and fewer full-page writes (usually meaning that `max_wal_size` and `checkpoint_timeout` are increased)
 - the latest checkpoint happened quite long ago (can be seen in PG logs in `log_checkpoint = on`, which is recommended to have in most cases). 
 
-The amount of dirty buffers is quite easy to observe, using extension pg_buffercache (standard contrib modele) and this query (may take significant time; see [the docs](https://postgresql.org/docs/current/pgbuffercache.html)):
+The amount of dirty buffers is quite easy to observe, using extension pg_buffercache (standard contrib module) and this query (may take significant time; see [the docs](https://postgresql.org/docs/current/pgbuffercache.html)):
 ```sql
 select count(*), pg_size_pretty(count(*) * 8 * 1024)
 from pg_buffercache

@@ -176,7 +176,7 @@ Here's a straightforward example of using semantic search to find the most relev
 The concept here is straightforward:
 
 1. First, we call OpenAI API to "vectorize" the text of our request.
-2. Then, we use `pgvector`'s similarity search to find K nearest neighbours.
+2. Then, we use `pgvector`'s similarity search to find K nearest neighbors.
 
 We will use the `HNSW` index, considered one of the best approaches today (although originally described in
 [2016](https://arxiv.org/abs/1603.09320)); added in by many DBMSes. In `pgvector`, it was added in version 0.5.0. 

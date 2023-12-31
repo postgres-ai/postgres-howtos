@@ -180,11 +180,11 @@ where i between 1000 and 2000;
 (5 rows)
 ```
 
-In this case, the planning time is really low, sub-millisecond – but I encountered with cases, when planning happened to be extremely slow, many seconds or even dozens of seconds. And it turned out (thanks to flamegraphs!) that analysing the Merge Join paths was the reason, so with "set enable_mergejoin = off" the planning time dropped to very low, sane values. But this is another story.
+In this case, the planning time is really low, sub-millisecond – but I encountered with cases, when planning happened to be extremely slow, many seconds or even dozens of seconds. And it turned out (thanks to flamegraphs!) that analyzing the Merge Join paths was the reason, so with "set enable_mergejoin = off" the planning time dropped to very low, sane values. But this is another story.
 
 ## Some good mate
 - Brendan Gregg's books: "Systems Performance" and "BPF Performance Tools"
-- Brendant Gregg's talks – for example, ["eBPF: Fueling New Flame Graphs & more • Brendan Gregg"](https://youtube.com/watch?v=HKQR7wVapgk) (video, 67 min) 
+- Brendan Gregg's talks – for example, ["eBPF: Fueling New Flame Graphs & more • Brendan Gregg"](https://youtube.com/watch?v=HKQR7wVapgk) (video, 67 min) 
 - [Profiling with perf](https://wiki.postgresql.org/wiki/Profiling_with_perf) (Postgres wiki)
 
 ---

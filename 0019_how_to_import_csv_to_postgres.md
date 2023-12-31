@@ -123,7 +123,7 @@ nik=# select clock_timestamp, pid, query from slow_tx_from_csv_1 order by clock_
 ## Method 2: Query CSV data live via file_fdw
 
 This method should be used when we need to query the CSV file data via SQL "live" without loading a snapshot. To achieve
-this, we'll be using [file_fwd](https://postgresql.org/docs/current/file-fdw.html).
+this, we'll be using [file_fdw](https://postgresql.org/docs/current/file-fdw.html).
 
 Having a great advantage (live data!), this method has its obvious disadvantages:
 

@@ -136,7 +136,7 @@ Thus, the Postgres executor must handle 88 KiB to return 317 bytes – this is f
 - Index maintenance: bloat control as well + regular reindexing, because index health declines over time even if autovacuum is well-tuned (btree health degradation rates improved in PG14, but those optimization does not eliminate the need to reindex on regular basis in heavily loaded systems).
 - Partitioning: one of benefits of partitioning is improved data locality.
 
-**Option 2.** Use index-only scans instead of index scans. This can be achieved by using mutli-column indexes or covering indexes, to include all the columns needed for our query. For our example:
+**Option 2.** Use index-only scans instead of index scans. This can be achieved by using multi-column indexes or covering indexes, to include all the columns needed for our query. For our example:
 ```
 nik=# create index on t1(user_id) include (id);
 CREATE INDEX

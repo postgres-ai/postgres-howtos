@@ -99,7 +99,7 @@ TBD:
 - tricks for versions <16
 
 ## Summary
-- In PG14+, use `compute_query_id` to have quer`y_id values both in Postgres logs and `pg_stat_activity`
+- In PG14+, use `compute_query_id` to have query_id values both in Postgres logs and `pg_stat_activity`
 - Increase `track_activity_query_size` (requires restart) to be able to track larger queries in `pg_stat_activity`
 - Organize workflow to combine records from `pg_stat_statements` and query examples from logs and `pg_stat_activity`, so when it comes to query optimization, you have good examples ready to be used with `EXPLAIN (ANALYZE, BUFFERS)`.
 

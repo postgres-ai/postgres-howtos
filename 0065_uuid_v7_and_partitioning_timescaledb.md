@@ -228,7 +228,7 @@ test=# explain select * from my_table
 
 ## Postscript
 
-Also read the following comment by [@jamessewell](https://twitter.com/jamessewell), originaly posted
+Also read the following comment by [@jamessewell](https://twitter.com/jamessewell), originally posted
 [here](https://twitter.com/jamessewell/status/1730125437903450129):
 
 > If update your `create_hypertable` call with:

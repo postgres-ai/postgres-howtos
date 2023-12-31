@@ -51,7 +51,7 @@ After installation:
 
 To install:
 
-- on macOS/homebrew: `brew install pspg`
+- on macOS/Homebrew: `brew install pspg`
 - Ubuntu/Debian: `sudo apt update && sudo apt install -y pspg`
 
 Then:
