@@ -7,7 +7,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1730979356363882
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
 
-We know that in some cases, `autovacuum` settings (especially if they are default) need to be adjusted to keep up 
+We know that in some cases, `autovacuum` settings (especially if they are default) need to be adjusted to keep up
 with the updates. One of the ways to understand that the existing settings are "not enough" is to compare
 [autovacuum_max_workers](https://postgresqlco.nf/doc/en/param/autovacuum_max_workers/) and the number of workers
 actually used:
@@ -24,9 +24,9 @@ where backend_type = 'autovacuum worker'
 group by state;
 ```
 
-👉 If most of the time, we see that the number of workers currently acting reaches `autovacuum_max_workers`, this 
-is a strong signal that it's time to consider increasing the number of workers (requires a restart) and/or make them 
-move faster – via [adjusting quotas](https://www.postgresql.org/docs/current/runtime-config-autovacuum.html) 
+👉 If most of the time, we see that the number of workers currently acting reaches `autovacuum_max_workers`, this
+is a strong signal that it's time to consider increasing the number of workers (requires a restart) and/or make them
+move faster – via [adjusting quotas](https://www.postgresql.org/docs/current/runtime-config-autovacuum.html)
 (<code><b>[auto]vacuum_vacuum_cost_limit</b></code>/<code>[auto]vacuum_vacuum_cost_delay</code>).
 
 However, we might have a question: how many tables are currently in the "queue" to be processed by `autovacuum`? The

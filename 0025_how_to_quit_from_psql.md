@@ -18,7 +18,7 @@ And if you need it to work in non-interactive mode, then it's also `\q`:
 - `psql -c '\q'` – this works
 - `psql -c 'quit'` – this doesn't
 
-Alternatively, `Ctrl-D` should also work. Being a standard way to exit a console, it works in various shells such as 
+Alternatively, `Ctrl-D` should also work. Being a standard way to exit a console, it works in various shells such as
 bash, zsh, irb, python, node, etc.
 
 ---

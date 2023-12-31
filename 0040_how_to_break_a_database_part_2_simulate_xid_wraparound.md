@@ -145,9 +145,9 @@ risks. And it should be included in the snippets showing how much of the "capaci
 > Basic version:
 >
 > ```sql
-> select 
->   datname, 
->   age(datfrozenxid), 
+> select
+>   datname,
+>   age(datfrozenxid),
 >   mxid_age(datminmxid)
 > from pg_database;
 > ```

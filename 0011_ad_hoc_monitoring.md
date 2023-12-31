@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1710176204953919574), [LinkedIn post](...). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1710176204953919574), [LinkedIn post](...).
 
 ---
 
@@ -26,7 +26,7 @@ Below, we assume that we are using Linux, but most of the considerations can be 
 - protect from accidental program interruption (`Ctrl-C`)
 - sustain Postgres restarts
 - observe both normal messages and errors
-- prefer collecting data in a form useful for programmed processing (e.g., CSV) 
+- prefer collecting data in a form useful for programmed processing (e.g., CSV)
 
 ## An example
 Let's assume we need to collect samples `pg_stat_activity` (`pgsa`) to study long-running transactions – those transactions that last longer than 1 minute.
@@ -48,7 +48,7 @@ Here is the recipe – and below we discuss it in detail.
                 select
                 clock_timestamp(),
                 clock_timestamp() - xact_start as xact_duration,
-                * 
+                *
                 from pg_stat_activity
             )
             select *
@@ -67,7 +67,7 @@ Below we discuss various tricks and tips used here.
 The benefits here are straightforward: if you have internet connectivity issues and disconnected, then work is not lost if `tmux` session is running on a server. Following a predefined session naming convention can be helpful in case you work in a team.
 
 ## How to use loops / batches
-Some programs you'll use support batched reporting (examples: `iostat -x 5`, `top -b -n 100 -d 5`), some don't support it. In the latter case, use a `while` loop. 
+Some programs you'll use support batched reporting (examples: `iostat -x 5`, `top -b -n 100 -d 5`), some don't support it. In the latter case, use a `while` loop.
 
 I prefer using an infinite loop like `while sleep 5; do ... ; done` – this approach has a small downside – it starts with sleeping first, and only then perform useful work – but it has a benefit that most of the time, you can interrupt using `Ctrl-C`.
 

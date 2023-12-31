@@ -8,8 +8,8 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1735925615185002
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
 
 Modern ORMs like Rails or Django use int8 (bigint) primary keys (PKs) today. However, in older projects, there may be
-old tables with int4 (integer, int, serial) PKs, that have grown and have risks of int4 overflow – 
-[max value for int4 is 2,147,483,647](https://postgresql.org/docs/current/datatype-numeric.html), 
+old tables with int4 (integer, int, serial) PKs, that have grown and have risks of int4 overflow –
+[max value for int4 is 2,147,483,647](https://postgresql.org/docs/current/datatype-numeric.html),
 and PK conversion int4->int8 without downtime is not a trivial task (TODO: cover it in another howto).
 
 Here is how we can quickly check if there are tables with int2 or int4 PKs and how much of the "capacity" has been used
@@ -18,7 +18,7 @@ in each case (postgres-checkup query):
 ```sql
 do $$
 declare
-  min_relpages int8 := 0; -- in very large DBs, skip small tables by setting this to 100 
+  min_relpages int8 := 0; -- in very large DBs, skip small tables by setting this to 100
   rec record;
   out text := '';
   out1 json;

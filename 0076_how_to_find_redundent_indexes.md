@@ -230,7 +230,7 @@ with const as (
     sum(table_size_bytes) as table_size_bytes_sum
   from redundant_indexes_grouped
 ), do_lines as (
-  select 
+  select
     format(
       'DROP INDEX CONCURRENTLY %s; -- %s, %s, table %s',
       formated_index_name,
@@ -273,7 +273,7 @@ select
     'do',
     (select json_agg(dl.line) from do_lines as dl),
     'undo',
-    (select json_agg(ul.line) from undo_lines as ul),    
+    (select json_agg(ul.line) from undo_lines as ul),
     'database_stat',
     (select * from database_stat),
     'min_index_size_bytes',

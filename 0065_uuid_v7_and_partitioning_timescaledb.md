@@ -104,8 +104,8 @@ test=# select uuid_v7_to_ts('0184c709-63cd-7bd1-99c3-a4773ab1e697');
 
 Pretending that we haven't noticed the loss of microseconds, we continue.
 
-> 🎯 **TODO:** : 
-> 1) may it be the case when we need that precision? 
+> 🎯 **TODO:** :
+> 1) may it be the case when we need that precision?
 > 2) timezones
 
 ## Hypertable
@@ -164,7 +164,7 @@ select random()::text, ts
 from generate_series(
   timestamptz '2000-01-01 00:01:00',
   timestamptz '2000-01-01 00:05:00',
-  interval '5 second' 
+  interval '5 second'
 ) as ts;
 
 insert into my_table(payload)
@@ -192,8 +192,8 @@ Child tables: _timescaledb_internal._hyper_2_3_chunk,
 ## Test queries – partition pruning
 
 Now we just need to remember that `uuid_ts` should always participate in queries, to let planner deal with as few
-partitions as possible – but knowing the `id` values, we can always reconstruct the `uuid_ts` values, using 
-`uuid_v7_to_ts()`. Note that I first disabled `seqscan` as the table `my_table` has too few rows, otherwise PostgreSQL 
+partitions as possible – but knowing the `id` values, we can always reconstruct the `uuid_ts` values, using
+`uuid_v7_to_ts()`. Note that I first disabled `seqscan` as the table `my_table` has too few rows, otherwise PostgreSQL
 may decide on preferring `seqscan` over index scan:
 
 ```sql

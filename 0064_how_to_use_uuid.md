@@ -141,7 +141,7 @@ A few notes:
    ----------------
                 16
    (1 row)
- 
+
    nik=# select pg_column_size(uuid_generate_v7());
     pg_column_size
    ----------------

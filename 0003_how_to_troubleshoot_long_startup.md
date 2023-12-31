@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1707466169245171773), [LinkedIn post](https://www.linkedin.com/pulse/how-troubleshoot-long-postgres-startup-nikolay-samokhvalov/). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1707466169245171773), [LinkedIn post](https://www.linkedin.com/pulse/how-troubleshoot-long-postgres-startup-nikolay-samokhvalov/).
 
 ---
 
@@ -42,7 +42,7 @@ One of the biggest causes of frustration can be a lack of understanding of what'
 ### 2a. Check max_wal_size and checkpoint_timeout
 The settings that matter the most here are related to checkpoint tuning. If `max_wal_size` and `checkpoint_timeout` are tuned so checkpoints happen less often, Postgres needs more time to reach a consistency point, if shutdown was not clean, without successful shutdown checkpoint (e.g., VM restarted) or if you're restoring from backups. To learn more about this:
 - [official docs](https://postgresql.org/docs/current/sql-checkpoint.html) (official docs)
-- [WAL and checkpoint tuning](https://postgres.fm/episodes/wal-and-checkpoint-tuning) (Postgres.fm podcast) 
+- [WAL and checkpoint tuning](https://postgres.fm/episodes/wal-and-checkpoint-tuning) (Postgres.fm podcast)
 
 In other words, if you observe longer startup time, it's probably because the server was tuned to write less to WAL and sync buffers less often during heavy loads at normal times – that tuning comes for the price of longer startup time, and this is exactly what you're dealing with.
 
@@ -98,7 +98,7 @@ A little bit later:
 99887   ??  Us     0:02.29 postgres: startup recovering 000000010000004500000058
 ```
 
-– as we can see, the position is changing, so REDO is progressing. This is already useful and should give some relief. 
+– as we can see, the position is changing, so REDO is progressing. This is already useful and should give some relief.
 
 Now, we cannot use SQL, but we can use `pg_controldata` to see meta information about the cluster's state (you need to specify PGDATA location, using `-D`):
 
@@ -166,7 +166,7 @@ Bonus: how to simulate long startup / REDO time:
 6. Ensure Postgres is down: `ps ax | grep postgres`
 7. Start Postgres (e.g., `pg_ctl -D <PGDATA> start`)
 8. Check Postgres logs and ensure that REDO is happening.
-   
+
 ---
 
 That's it! I hope this helps keep you calm and allows you to wait consciously for your Postgres to open the gates to fun SQL queries. Hopefully, fewer folks will be stressed out during long startup times.

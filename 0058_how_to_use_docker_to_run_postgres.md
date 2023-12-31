@@ -176,12 +176,12 @@ then increase the `--shm-size` value in the `docker run` command.
     ```bash
     docker exec -it pg16 pg_dumpall -U postgres \
       | bzip2 > dumpall.bz2
-    
+
     docker rm -f pg16
-    
+
     rm -rf ~/pgdata
     mkdir ~/pgdata
-    
+
     docker run \
       --detach \
       --name pg15 \
@@ -189,7 +189,7 @@ then increase the `--shm-size` value in the `docker run` command.
       -v ~/pgdata:/var/lib/postgresql/data \
       --shm-size=128m \
       postgres:15
-    
+
     bzcat dumpall.bz2  \
       | docker exec -i pg15 psql -U postgres \
     >>dump_load.log \

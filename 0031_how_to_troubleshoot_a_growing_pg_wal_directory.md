@@ -35,12 +35,12 @@ Reference doc: [The view pg_replication_slots](https://postgresql.org/docs/curre
 
 - If there are inactive replication slots, consider dropping them to prevent reaching 100% of used disk space. Once the
   problematic slot(s) are dropped, Postgres will remove old WALs.
-- Alternatively, consider using 
+- Alternatively, consider using
   [max_slot_wal_keep_size (PG13+)](https://postgresqlco.nf/doc/en/param/max_slot_wal_keep_size/).
 
 ## Step 2: check if `archive_command` works well
 
-If `archive_mode` and `archive_command` are configured to archive WALs (e.g., for backup purposes), but 
+If `archive_mode` and `archive_command` are configured to archive WALs (e.g., for backup purposes), but
 `archive_command` is failing (returns non-zero exit code) or lagging (WAL generation rates are higher than the speed of
 archiving), then this can be another reason of `pg_wal` growth.
 
@@ -54,21 +54,21 @@ Once the problem is identified, the `archive_command` needs to be either fixed o
 tool -- this depends on the tool used in `archive_command`; e.g., WAL-G support many options for compression, more or
 less CPU intensive).
 
-The next two steps are to be considered as additional, since their effects on the `pg_wal` size growth are limited – 
-they can cause only certain amount of extra WALs being kept in `pg_wal` 
+The next two steps are to be considered as additional, since their effects on the `pg_wal` size growth are limited –
+they can cause only certain amount of extra WALs being kept in `pg_wal`
 (unlike the first two reasons we just discussed).
 
 ## Step 3: check `wal_keep_size`
 
-In some cases, `wal_keep_size` ([PG13+ docs](https://postgresqlco.nf/doc/en/param/wal_keep_size/); in PG12 and older, 
+In some cases, `wal_keep_size` ([PG13+ docs](https://postgresqlco.nf/doc/en/param/wal_keep_size/); in PG12 and older,
 see `wal_keep_segments`) is set to a high value. When slots are used, it's not generally needed – this is an older (than
 slots) mechanism to avoid situations when some WAL is deleted and a lagging replica cannot catch up.
 
 ## Step 4: check `max_wal_size` and `checkpoint_timeout`
 
 When a successful checkpoint happens, Postgres can delete old WALs. In some cases, if checkpoint tuning was performed in
-favor of less frequent checkpoints, this can cause more WALs to be stored in `pg_wal` than one could expect. In this 
-case, if it's a problem for disk space (specifically important on smaller servers), reconsider `max_wal_size` and 
+favor of less frequent checkpoints, this can cause more WALs to be stored in `pg_wal` than one could expect. In this
+case, if it's a problem for disk space (specifically important on smaller servers), reconsider `max_wal_size` and
 `checkpoint_timeout` to lower values. In some cases, it also can make sense to run an explicit manual `CHECKPOINT`, to
 allow Postgres clean up some old files right away.
 

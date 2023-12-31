@@ -27,7 +27,7 @@ nik=# \df *clock*
 
 ## How to see what psql is doing – ECHO_HIDDEN
 
-Let's assume we want to observe the size of the table `t1` - for that, we could construct a query returning table size 
+Let's assume we want to observe the size of the table `t1` - for that, we could construct a query returning table size
 (or just find it somewhere or ask an LLM). But staying inside `psql`, we can just use `\dt+ t1`:
 
 ```
@@ -42,7 +42,7 @@ nik=# \dt+ t1
 We would like to execute it in a loop, to observe how table size grows. For this, psql supports `\watch` – however, it
 won't work with other backslash commands.
 
-Solution – turn on `ECHO_HIDDEN` and see the SQL query behind `\dt+` (alternatively, you can use the option 
+Solution – turn on `ECHO_HIDDEN` and see the SQL query behind `\dt+` (alternatively, you can use the option
 `--echo-hidden` when starting `psql`):
 
 ```sql

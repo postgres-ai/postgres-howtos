@@ -47,9 +47,9 @@ nik=# select pg_column_size(1::int8);
 
 👉 `int4` (aka `int` or `integer`) occupies 4 bytes, as expected, while `int8` (`bigint`) – 8.
 
-And `VARLENA` types such as `varchar`, `text`, `json`, `jsonb`, arrays have variable length (hence the name), and 
+And `VARLENA` types such as `varchar`, `text`, `json`, `jsonb`, arrays have variable length (hence the name), and
 additional header, e.g.:
-    
+
 ```sql
 nik=# select pg_column_size('ok'::text);
  pg_column_size
@@ -63,7 +63,7 @@ see [struct varlena header](https://github.com/postgres/postgres/blob/c161ab74f7
 and 2 bytes for data.
 
 Boolean example:
-    
+
 ```
 nik=# select pg_column_size(true), pg_column_size(false);
  pg_column_size | pg_column_size
@@ -73,7 +73,7 @@ nik=# select pg_column_size(true), pg_column_size(false);
 ```
 
 Remembering the previous howto, [Column Tetris](0084_how_to_find_the_best_order_of_columns_to_save_on_storage.md), here we
-can conclude that not only we need 1 byte to store a bit (8x space), it becomes 8 bytes if we create a table 
+can conclude that not only we need 1 byte to store a bit (8x space), it becomes 8 bytes if we create a table
 (`c1 boolean`, `c2 int8`), due to alignment padding – meaning that it's already 64 bits! So, in such "unfortunate" case, those
 who store 'true' as text, don't lose anything at all:
 
@@ -99,7 +99,7 @@ nik=# select pg_column_size('false'::text);
 👉 these 9 bytes are padded with zeroes to 16, when alignment padding is needed. Don't store true/false as text :) And
 for very optimized storage of multiple boolean "flag" values, consider using a single integer, and "packing" boolean
 values inside it, then bit operators `<<`, `~`, `|`, `&` to encode and decode
-values (docs: [Bit String Functions and Operators](https://postgresql.org/docs/current/functions-bitstring.html)) – 
+values (docs: [Bit String Functions and Operators](https://postgresql.org/docs/current/functions-bitstring.html)) –
 doing so, you can "pack" 64 booleans inside a single `int8` value.
 
 A couple of more examples:

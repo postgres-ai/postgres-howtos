@@ -34,7 +34,7 @@ information about all tables, indexes, and so on. It has two keys:
 - PK: `oid` - a number ([OID, object identifier](https://postgresql.org/docs/current/datatype-oid.html))
 - UK: a pair of columns `(relname, relnamespace)`, relation name and OID of the schema.
 
-A trick to remember: OID can be quickly converted to relation name, vice versa, using type conversion to `oid` and 
+A trick to remember: OID can be quickly converted to relation name, vice versa, using type conversion to `oid` and
 `regclass` datatypes.
 
 Simple examples for a table named `t1`:
@@ -102,9 +102,9 @@ In some cases, metadata queries can be heavy, slow. Here's what to do if it's so
 
 1. Consider caching to reduce the frequency and necessity of metadata queries.
 
-2. Check for catalog bloat. For example `pg_class` can be bloated due to frequent DDL, use of temp tables, etc. In this 
+2. Check for catalog bloat. For example `pg_class` can be bloated due to frequent DDL, use of temp tables, etc. In this
    case, unfortunately, a `VACUUM FULL` is needed (`pg_repack` cannot repack system catalogs). If you need it, don't
-   forget the golden rule of zero-downtime DDLs in Postgres – 
+   forget the golden rule of zero-downtime DDLs in Postgres –
    [use low lock_timeout and retries](https://postgres.ai/blog/20210923-zero-downtime-postgres-schema-migrations-lock-timeout-and-retries).
 
 ## INFORMATION_SCHEMA
@@ -129,5 +129,5 @@ This phenomenon also explains why `select now() - query_start from pg_stat_activ
 the function `now()` is executed at the beginning of the transaction, once, and doesn't change its value inside the
 transaction, no matter how many times you call it.
 
-To get precise time intervals, use `clock_timestamp()` instead 
+To get precise time intervals, use `clock_timestamp()` instead
 (`select clock_timestamp() - query_start from pg_stat_activity;`).

@@ -12,7 +12,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1714958281989554
 Today we will implement RAG ([Retrieval Augmented Generation](https://en.wikipedia.org/wiki/Prompt_engineering#Retrieval-augmented_generation])) right in Postgres:
 
 1. Load full Postgres commit history to a Postgres table
-2. Using `plpython3u` (N/A on some managed services, such as RDS), start calling OpenAI APIs right from Postgres. 
+2. Using `plpython3u` (N/A on some managed services, such as RDS), start calling OpenAI APIs right from Postgres.
    > ⚠️ Warning: this approach doesn't scale well, so it's not recommended for larger production clusters. Consider this as
    either for fun or for only small projects/services.
 3. For each commit, generate OpenAI embeddings and store them in the "vector" format (`pgvector`).
@@ -164,7 +164,7 @@ from upd
 ```
 
 This process might take a significant amount of time, perhaps more than an hour, so prepare to wait. Also, here is where
-we start paying OpenAI for the API use (although, embedding creation is very cheap, and you'll pay somewhat `~$1` here, 
+we start paying OpenAI for the API use (although, embedding creation is very cheap, and you'll pay somewhat `~$1` here,
 see [pricing](https://openai.com/pricing)).
 
 Once it's done – or earlier, with partial results – you can start using it.
@@ -179,7 +179,7 @@ The concept here is straightforward:
 2. Then, we use `pgvector`'s similarity search to find K nearest neighbors.
 
 We will use the `HNSW` index, considered one of the best approaches today (although originally described in
-[2016](https://arxiv.org/abs/1603.09320)); added in by many DBMSes. In `pgvector`, it was added in version 0.5.0. 
+[2016](https://arxiv.org/abs/1603.09320)); added in by many DBMSes. In `pgvector`, it was added in version 0.5.0.
 Note that this is `ANN` index – "approximate nearest neighbors", so it is, for the sake of speed, allowed to produce
 not strict result, unlike regular indexes in Postgres.
 
@@ -327,7 +327,7 @@ create or replace function openai_chat(
 $$ language sql;
 ```
 
-Now, just ask using `openai_chat(...)`, for example: 
+Now, just ask using `openai_chat(...)`, for example:
 
 ```
 nik=# \a
@@ -341,7 +341,7 @@ The second fix was made on 2012-11-29 02:25:27+00, with the commit hash 3c840464
 (1 row)
 ```
 
-Note that it uses the model "gpt-4" by default, which is slower and more expensive than "gpt-3.5-turbo-16k" 
+Note that it uses the model "gpt-4" by default, which is slower and more expensive than "gpt-3.5-turbo-16k"
 (see [pricing](https://openai.com/pricing)).
 
 ## A few final notes

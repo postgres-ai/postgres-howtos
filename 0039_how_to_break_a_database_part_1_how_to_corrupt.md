@@ -45,7 +45,7 @@ A couple of interesting methods from there:
 One useful method is to use `dd` to write to a data file directly. This can be used to simulate a corruption that can be
 detected by checksum verification
 ([Day 37: How to enable data checksums without downtime](0037_how_to_enable_data_checksums_without_downtime.md)). This
-is also demonstrated in this article: 
+is also demonstrated in this article:
 [pg_healer: repairing Postgres problems automatically](https://endpointdev.com/blog/2016/09/pghealer-repairing-postgres-problems/).
 
 First, create a table and see where its data file is located:

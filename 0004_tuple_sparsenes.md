@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1707854750392455596), [LinkedIn post](https://www.linkedin.com/pulse/understanding-how-sparsely-tuples-stored-postgres-nikolay-samokhvalov/). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1707854750392455596), [LinkedIn post](https://www.linkedin.com/pulse/understanding-how-sparsely-tuples-stored-postgres-nikolay-samokhvalov/).
 
 ---
 

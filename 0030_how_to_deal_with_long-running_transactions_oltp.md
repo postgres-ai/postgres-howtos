@@ -119,7 +119,7 @@ while sleep 1; do
           select
             clock_timestamp(),
             clock_timestamp() - xact_start as xact_duration,
-            * 
+            *
           from pg_stat_activity
         )
         select *

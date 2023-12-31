@@ -137,4 +137,4 @@ A couple of good reads on this topic:
   too): [LWLock: lockmanager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/wait-event.lw-lock-manager.html)
 - [Postgres Partition Pains - LockManager Waits](https://kylehailey.com/post/postgres-partition-pains-lockmanager-waits)
   by [@kylelf_](https://twitter.com/kylelf_)
-  
+

@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1707147450044297673), [LinkedIn post](https://www.linkedin.com/pulse/how-troubleshoot-speed-up-postgres-stop-restart-nikolay-samokhvalov/). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1707147450044297673), [LinkedIn post](https://www.linkedin.com/pulse/how-troubleshoot-speed-up-postgres-stop-restart-nikolay-samokhvalov/).
 
 ---
 
@@ -6,7 +6,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1707147450044297
 
 <img src="files/0002_cover.png" width="600" />
 
-#PostgresMarathon day 2. Let's discuss PostgreSQL shutdown and restarts. It's not uncommon to see quite long and even failed shutdown/restart attempts. If it's happening inside an incident troubleshooting, it often can provoke emotions and additional mistakes. 
+#PostgresMarathon day 2. Let's discuss PostgreSQL shutdown and restarts. It's not uncommon to see quite long and even failed shutdown/restart attempts. If it's happening inside an incident troubleshooting, it often can provoke emotions and additional mistakes.
 
 Some very popular reasons affecting the duration of the shutdown attempt:
 1. There are long-running transactions.
@@ -34,9 +34,9 @@ In this case, it is usually recommended to use `SIGINT` (`pg_ctl stop -m fast`) 
 ## Reason 2: Long shutdown checkpoint
 
 The second reason – a lot of dirty buffers in the buffer pool – is less trivial but fortunately, is easy to mitigate. This is especially common when:
-- the buffer pool size (`shared_buffers`) is large 
+- the buffer pool size (`shared_buffers`) is large
 - checkpoint tuning was performed in favor of fewer overheads of bulk random writes and fewer full-page writes (usually meaning that `max_wal_size` and `checkpoint_timeout` are increased)
-- the latest checkpoint happened quite long ago (can be seen in PG logs in `log_checkpoint = on`, which is recommended to have in most cases). 
+- the latest checkpoint happened quite long ago (can be seen in PG logs in `log_checkpoint = on`, which is recommended to have in most cases).
 
 The amount of dirty buffers is quite easy to observe, using extension pg_buffercache (standard contrib module) and this query (may take significant time; see [the docs](https://postgresql.org/docs/current/pgbuffercache.html)):
 ```sql
@@ -76,7 +76,7 @@ Interestingly, slow/failing `archive_command` can cause longer downtime during s
 ## Summary:
 - use "fast mode" (`pg_ctl stop -m fast`) if you don't want existing sessions to end their work normally
 - always perform an explicit CHECKPOINT before shutdown or restart attempt
-- monitor `pg_stat_archiver` and ensure that `pg_stat_archiver` works without failures and lags 
+- monitor `pg_stat_archiver` and ensure that `pg_stat_archiver` works without failures and lags
 
 ---
 

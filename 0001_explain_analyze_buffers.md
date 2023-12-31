@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1706689567355732052), [LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7112529621178347520/). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1706689567355732052), [LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7112529621178347520/).
 
 ---
 

@@ -19,13 +19,13 @@ However, there are a few potential complexities.
 
 ## Locking issues
 
-Adding a column requires table-level `AccessExclusiveLock`, which blocks all queries to the table including `SELECT`s. 
+Adding a column requires table-level `AccessExclusiveLock`, which blocks all queries to the table including `SELECT`s.
 Two consequences of it:
 
 1) We don't want the operation to last long (e.g. scanning the whole table or, even worse, rewriting it).
 2) The lock acquisition should be done gracefully.
 
-Regarding the latter, it's analyzed in detail in 
+Regarding the latter, it's analyzed in detail in
 [Zero-downtime Postgres schema migrations need this: lock_timeout and retries](https://postgres.ai/blog/20210923-zero-downtime-postgres-schema-migrations-lock-timeout-and-retries).
 
 An example of graceful approach, with low `lock_timeout` and retries:
@@ -61,8 +61,8 @@ end $do$;
 
 Note that in this particular example, subtransactions are implicitly used (the `BEGIN/EXCEPTION WHEN/END` block). Which
 can be a problem in case of very high XID growth rate (e.g., many writing transactions) and a long-running transaction –
-this can trigger SubtransSLRU contention on standbys; see: 
-[PostgreSQL Subtransactions Considered Harmful](https://postgres.ai/blog/20210831-postgresql-subtransactions-considered-harmful). 
+this can trigger SubtransSLRU contention on standbys; see:
+[PostgreSQL Subtransactions Considered Harmful](https://postgres.ai/blog/20210831-postgresql-subtransactions-considered-harmful).
 In this case, implement the retry logic at transaction level.
 
 ## DEFAULT
@@ -85,7 +85,7 @@ nik=# select pg_get_expr(adbin, 't1'::regclass::oid) from pg_attrdef;
 (1 row)
 ```
 
-While the values for `DEFAULT` defined for already existing columns are stored together with column definition, in 
+While the values for `DEFAULT` defined for already existing columns are stored together with column definition, in
 `pg_attribute`:
 
 ```sql
@@ -118,8 +118,8 @@ we can use this trick
    ```sql
    alter table t1
    add column id_new int8 not null default -1;
- 
-   comment on column "t1"."id_new" is 'my future PK'; 
+
+   comment on column "t1"."id_new" is 'my future PK';
    ```
 
 2) Take care of the existing and new-coming values in this column:
@@ -137,7 +137,7 @@ we can use this trick
 
 ## Backfilling
 
-In some cases, the single-value `DEFAULT` is not enough to define the values in the new column for all existing rows, 
+In some cases, the single-value `DEFAULT` is not enough to define the values in the new column for all existing rows,
 and we still need to backfill. This has to be done in batches, to avoid long-lasting locks. Notes:
 
 1. As usual, for OLTP (web and mobile apps), it is recommended to find batch size so all `UPDATE`s do not exceed 1-2
@@ -151,7 +151,7 @@ and we still need to backfill. This has to be done in batches, to avoid long-las
    ```sql
    create index concurrently i_t1_id_new on t1(id) where "id_new" = -1;
    ```
-  
+
 - For batching, to define scope for the UPDATE, use:
 
    ```sql
@@ -179,7 +179,7 @@ and we still need to backfill. This has to be done in batches, to avoid long-las
    ```sql
    nik=# alter table t1 alter column c2 set default -30;
    ALTER TABLE
-  
+
    nik=# select pg_get_expr(adbin, 't1'::regclass::oid) from pg_attrdef;
      pg_get_expr
    ----------------

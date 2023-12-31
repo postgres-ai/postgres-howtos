@@ -53,7 +53,7 @@ sudo -u postgres psql \
 ## CentOS Stream 9
 
 ```bash
-dnf module reset -y postgresql 
+dnf module reset -y postgresql
 dnf module enable -y postgresql:16
 
 dnf install -y \

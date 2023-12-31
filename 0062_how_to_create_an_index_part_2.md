@@ -16,16 +16,16 @@ partial indexes, indexes on expressions, or multi-column indexes – this will b
 ## Long index creation and ways to speed it up
 
 As already mentioned, too long index build time – say, hours – is not only inconvenient, it prevents `autovacuum` from
-processing the table and also holds `xmin` horizon during the whole operation (which means that `autovacuum` cannot 
+processing the table and also holds `xmin` horizon during the whole operation (which means that `autovacuum` cannot
 remove freshly-dead tuples in *all* tables in the database).
 
 Thus, it is worth improving build time for individual indexes. General ideas:
 
 1. Configuration tuning:
 
-   - higher `maintenance_work_mem` as already discussed 
+   - higher `maintenance_work_mem` as already discussed
      > 🎯 **TODO:** show how with an experiment
-   - checkpoint tuning: temporarily raised `max_wal_size` and `checkpoint_timeout` (doesn't require restart) reduces 
+   - checkpoint tuning: temporarily raised `max_wal_size` and `checkpoint_timeout` (doesn't require restart) reduces
      checkpoint frequency, which may improve build time
      > 🎯 **TODO:**  an experiment to check it
 
@@ -35,7 +35,7 @@ Thus, it is worth improving build time for individual indexes. General ideas:
 
 ## Parallel index build
 
-The option `max_parallel_maintenance_workers` 
+The option `max_parallel_maintenance_workers`
 (PG11+; see [docs](https://postgresqlco.nf/doc/en/param/max_parallel_maintenance_workers/)) defines the maximum number
 of parallel workers for` CREATE INDEX`. Currently, (as of PG16), it works only for building B-tree indexes.
 
@@ -68,8 +68,8 @@ individual partitions. However, this issue can be solved (PG11+):
    create index concurrently i_p_123 on partition_123 ...;
    ```
 
-2. Then create an index on the partitioned table (parent), without `CONCURRENTLY`, and also using the keyword `ONLY` – 
-   it will be fast since this is not a large table, physically, but it will be marked `INVALID` until the next step is 
+2. Then create an index on the partitioned table (parent), without `CONCURRENTLY`, and also using the keyword `ONLY` –
+   it will be fast since this is not a large table, physically, but it will be marked `INVALID` until the next step is
    fully executed:
 
    ```
@@ -83,5 +83,5 @@ individual partitions. However, this issue can be solved (PG11+):
    alter index i_p_main attach partition i_p_123;
    ```
 
-Docs: 
+Docs:
 [Partition Maintenance](https://postgresql.org/docs/current/ddl-partitioning.html#DDL-PARTITIONING-DECLARATIVE-MAINTENANCE).

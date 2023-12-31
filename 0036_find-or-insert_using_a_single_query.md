@@ -32,7 +32,7 @@ on conflict (ts) do nothing
 returning *
 ```
 
-This won't return anything if a collision happens. Per the [doc](https://postgresql.org/docs/current/sql-insert.html): 
+This won't return anything if a collision happens. Per the [doc](https://postgresql.org/docs/current/sql-insert.html):
 
 > Only rows that were successfully inserted or updated will be returned.
 
@@ -106,7 +106,7 @@ DETAIL:  Key (ts)=(2023-11-01 01:00:28-07) already exists.
 ```
 
 Why errors can happen here? Because between checking the row with sub-`SELECT` and attempting to run an `INSERT` some
-very brief time always exists, during which another session might perform the `INSERT`. So this approach is not working 
+very brief time always exists, during which another session might perform the `INSERT`. So this approach is not working
 well in general case. But we can improve it.
 
 ## Approach 3: improved CTE
@@ -172,13 +172,13 @@ query with `now()::timestamptz(0)` and `\watch .2`).
 1. Occasional empty results in highly concurrent workloads
 
    `select * from select_attempt` in the last query may lead to empty results occasionally – to fix it, we need to re-read
-   from the table. This is a problem. Replacing it with another read attempt won't help. 
-   
-   **Solution**: Use `ON CONFLICT DO UPDATE`, which here is acceptable since it comes after a `SELECT` attempt, and the 
+   from the table. This is a problem. Replacing it with another read attempt won't help.
+
+   **Solution**: Use `ON CONFLICT DO UPDATE`, which here is acceptable since it comes after a `SELECT` attempt, and the
    overhead discussed above hits us only rarely (at same frequency as query failures in the case of "naive CTE").
-   
+
    Testing it:
-   
+
    ```bash
    echo "with val(ts) as (
      values(now()::timestamptz(0))
@@ -200,7 +200,7 @@ query with `now()::timestamptz(0)` and `\watch .2`).
    )
    select 1/count(*) from res;
    " > improved.sql
-   
+
    pgbench -c8 -j8 -R100 -P10 -T120 -nr -fimproved.sql
    ```
 
