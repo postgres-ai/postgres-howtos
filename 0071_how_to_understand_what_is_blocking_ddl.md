@@ -99,13 +99,13 @@ In this case, we can do this:
               from pg_stat_activity
               where array[pid] <@ pg_blocking_pids(rec.pid)
             );
-    
+
             wait_more := true;
         end loop;
-    
+
         if wait_more then
           perform pg_sleep(1);
-    
+
           wait_more := false;
         else
           perform pg_sleep(0.05);
@@ -117,7 +117,7 @@ In this case, we can do this:
    This observer code will report something like this, if DDL session waits more than 50ms:
 
    > 2023-12-06T19:37:35.746363053Z 2023-12-06 19:37:35.746 UTC [237] LOG:  DDL session blocked. Session info: pid=197, query_left50=alter table t1 add column new_c int8;, wait=Lock
-   > 
+   >
    > :relation. Blockers: {"{\"pid\" : 211, \"state\" : \"idle in transaction\", \"wait\" : \"Client:ClientRead\", \"query_l50\" : \"select from t1 limit 0;\"}"}
 
    This should be enough for troubleshooting of failing DDL attempts.

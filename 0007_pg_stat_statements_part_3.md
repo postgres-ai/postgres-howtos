@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1709069225762095258), [LinkedIn post](https://www.linkedin.com/pulse/how-work-pgstatstatements-part-3-nikolay-samokhvalov/). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1709069225762095258), [LinkedIn post](https://www.linkedin.com/pulse/how-work-pgstatstatements-part-3-nikolay-samokhvalov/).
 
 ---
 
@@ -24,7 +24,7 @@ Analysis of relative values helps understand how big is the potential win from e
 - However,  if we have `1000 calls/sec` and see that it's `50%` of the whole, this single optimization step — say, reducing it to `10 calls/sec` — helps us shave off almost half of all the QPS we have.
 
 One of the ways to deal with proportion values in larger systems is to react on large percentage values, consider the corresponding query groups as candidates for optimization. For example, in systems with large number of query groups, it might make sense to apply the following approach:
-- Periodically, for certain metrics (for example, `calls`, `total_exec_time`, `total_plan_time`, `shared_blks_dirtied`, `wal_bytes`), build Top-10 lists showing query groups having the largest `%M` values. 
+- Periodically, for certain metrics (for example, `calls`, `total_exec_time`, `total_plan_time`, `shared_blks_dirtied`, `wal_bytes`), build Top-10 lists showing query groups having the largest `%M` values.
 - If particular query group turns out to be a major contributor – say, >20% — on certain metrics, consider this query as a candidate for optimization. For example, in most cases, we don't want a single query group to be responsible for 1/2 of the aggregated `total_exec_time` ("total `total_exec_time`", apologies for tautology).
 – In certain cases, it is ok to decide that query doesn't require optimization — in this case we mark such group as exclusion and skip it in the next analyses.
 
@@ -36,7 +36,7 @@ If we deal with 2 snapshots, then it makes sense to obtain such values explicitl
 1. `%M`, where `M` is `calls` — this gives us proportions of QPS. For example, if we normally have `~10k QPS`, but if some query group is responsible for `~7k QPS`, this might be considered as abnormal, requiring optimizations on client side (usually, application code).
 
 2. `%M`, where `M` is `total_plan_time + total_exec_time` — percentage in time that the server spends to process queries in a particular group. For example, if the absolute value is `20 seconds/second` (quite a loaded system — each second Postgres needs to spend 20 seconds to process queries), and a particular group has 75% on this metric, it means we need to focus on optimizing this particular query group. Ways to optimize:
-    - If QPS (`calls/second`) is high, then, first of all, we need to reduce. 
+    - If QPS (`calls/second`) is high, then, first of all, we need to reduce.
     - If average latency (`total_exec_time`, less often `total_plan_time` or both) is high, then we need to apply micro-optimization using `EXPLAIN` and `EXPLAIN (ANALYZE, BUFFERS)`.
     - In some cases, we need to combine both directions of optimization.
 

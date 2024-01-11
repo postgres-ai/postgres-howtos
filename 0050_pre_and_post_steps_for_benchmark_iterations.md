@@ -87,9 +87,9 @@ begin
   -- Main reset commands
   for cmd in select * from json_each_text(reset_cmd_main) loop
     if cur_ver >= (cmd.value)::int then
-      raise info 'Execute SQL: select %', cmd.key;  
+      raise info 'Execute SQL: select %', cmd.key;
 
-      execute format ('select %s', cmd.key); 
+      execute format ('select %s', cmd.key);
     end if;
   end loop;
 
@@ -100,9 +100,9 @@ begin
       from pg_available_extensions
       where name = cmd.value
     ) then
-      raise info 'Execute SQL: select %', cmd.key;  
+      raise info 'Execute SQL: select %', cmd.key;
 
-      execute format ('select %s', cmd.key); 
+      execute format ('select %s', cmd.key);
     end if;
   end loop;
 end
@@ -126,11 +126,11 @@ Multiple steps are recommended here.
       psql -Xc "copy (select * from ${viewname})
           to stdout with csv header delimiter ','" \
         > "${destination}/${viewname}.csv"
-    done  
+    done
 
     psql -Xc "copy (select * from pg_stat_kcache())
           to stdout with csv header delimiter ','" \
-        > "${destination}/pg_stat_kcache.csv"  
+        > "${destination}/pg_stat_kcache.csv"
 
     psql -Xc "copy (
           select
@@ -141,7 +141,7 @@ Multiple steps are recommended here.
           group by event_type, event
           order by of_events desc
         ) to stdout with csv header delimiter ','" \
-      > "${destination}/pg_wait_sampling_profile.csv"  
+      > "${destination}/pg_wait_sampling_profile.csv"
 
     # todo: pg_qualstats
     ```
@@ -155,7 +155,7 @@ Multiple steps are recommended here.
         select * from pg_settings order by name
       ) to stdout with csv header delimiter ','" \
       > "${destination}/pg_settings_all.csv"
-    
+
     psql -Xc "
         select name, setting as current_setting, unit, boot_val as default, context
         from pg_settings

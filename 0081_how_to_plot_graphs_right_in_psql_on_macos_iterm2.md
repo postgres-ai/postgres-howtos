@@ -23,14 +23,14 @@ example, [How do I make my terminal display graphical pictures?](https://askubun
    wget \
      -O ~/pg_graph.py \
      https://gist.githubusercontent.com/NikolayS/d5f1af808f7275dc1491c37fb1e2dd11/raw/4f19a23222a6f7cf66eead3cae9617dd39bf07a5/pg_graph
-   
+
    pip install matplotlib
    ```
 
 2) Define a macro in ~/.psqlrc (this line should work in bash, zsh, and csh):
 
    ```bash
-   printf "%s %s %s %s %s %s\n" \\set graph \'\\\\g \| 
+   printf "%s %s %s %s %s %s\n" \\set graph \'\\\\g \|
    python3 $(pwd)/pg_graph.py\' \
      >> ~/.psqlrc
    ```
@@ -54,7 +54,7 @@ example, [How do I make my terminal display graphical pictures?](https://askubun
          ('Dec', 16, 5, 6)
      )
      select * from avg_temp;
-   
+
     month | san_diego | vancouver | london
    -------+-----------+-----------+--------
     Jan   |        15 |         4 |      5
@@ -70,7 +70,7 @@ example, [How do I make my terminal display graphical pictures?](https://askubun
     Nov   |        18 |         8 |      8
     Dec   |        16 |         5 |      6
    (12 rows)
-   
+
    nik=# :graph
    ```
 

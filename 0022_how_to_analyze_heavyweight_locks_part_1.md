@@ -28,7 +28,7 @@ for a particular transaction/session?
 
 For this, there is a system view: [pg_locks](https://postgresql.org/docs/current/view-pg-locks.html).
 
-Important rule to remember: the analysis should be conducted in a separate session, to exclude the "observer effect" 
+Important rule to remember: the analysis should be conducted in a separate session, to exclude the "observer effect"
 (the locks that are acquired by the analysis itself).
 
 For example, consider a table:
@@ -136,8 +136,8 @@ Notes:
   attempt of `AccessExclusiveLock` (e.g. `ALTER TABLE`), but there is some long-lasting `AccessShareLock` – a "sandwich"
   situation. This scenario can lead to downtimes when, during an attempt to deploy a very
   simple `ALTER TABLE .. ADD COLUMN` without proper precaution measures (low `lock_timeout` and retries), it is blocked
-  by a long-running `SELECT`, which, in its turn, blocks subsequent `SELECT`s (and other DML). More: 
+  by a long-running `SELECT`, which, in its turn, blocks subsequent `SELECT`s (and other DML). More:
   [Zero-downtime Postgres schema migrations need this: lock_timeout and retries](https://postgres.ai/blog/20210923-zero-downtime-postgres-schema-migrations-lock-timeout-and-retries).
 - Only 16 of the locks have `fastpath=true`. When `fastpath=false`, Postgres lock manager uses a slower, but more
-  comprehensive method to acquire locks. It is discussed in #PostgresMarathon 
-  [Day 18: Over-indexing](0018_over_indexing.md). 
+  comprehensive method to acquire locks. It is discussed in #PostgresMarathon
+  [Day 18: Over-indexing](0018_over_indexing.md).

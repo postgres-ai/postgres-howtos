@@ -37,14 +37,14 @@ nik=# select (random() * 100)::int8 from generate_series(1, 5);
 (5 rows)
 ```
 
-Note that per the [docs](https://postgresql.org/docs/current/functions-math.html#FUNCTIONS-MATH-RANDOM-TABLE), random() 
+Note that per the [docs](https://postgresql.org/docs/current/functions-math.html#FUNCTIONS-MATH-RANDOM-TABLE), random()
 
 > uses a deterministic pseudo-random number generator. It is fast but not suitable for cryptographic applications...
- 
-We shouldn't use it for tasks as token or password generation (for that, use the library called `pgcrypto`). 
+
+We shouldn't use it for tasks as token or password generation (for that, use the library called `pgcrypto`).
 But it is okay to use it for pure random data generation (not for obfuscation).
 
-Starting with Postgres 16, there is also 
+Starting with Postgres 16, there is also
 [random_normal(mean, stddev)](https://postgresql.org/docs/16/functions-math.html#FUNCTIONS-MATH-RANDOM-TABLE):
 
 > Returns a random value from the normal distribution with the given parameters; `mean` defaults to 0.0 and `stddev`

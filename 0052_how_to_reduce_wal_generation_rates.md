@@ -73,7 +73,7 @@ Since Postgres 13, both `pg_stat_statements` and `EXPLAIN` can provide WAL-relat
    from
      pg_stat_statements,
      time_period
-   order by wal_bytes desc 
+   order by wal_bytes desc
    limit 25;
    ```
 
@@ -104,7 +104,7 @@ small part of the page is changed, still the whole page needs to be written afte
 same page are going to be normal (only changes are recorded to WAL), but once a new checkpoint happens, then again, a
 new full-page write is needed first. More about it:
 
-- Hironobu Suzuki's "The Internals of PostgreSQL". Chapter 9 "Write Ahead Logging – WAL", 
+- Hironobu Suzuki's "The Internals of PostgreSQL". Chapter 9 "Write Ahead Logging – WAL",
   [9.1.3. Full-Page Writes](https://interdb.jp/pg/pgsql09.html#_9.1.3).
 - Egor Rogov's "PostgreSQL 14 Internals", "10.4 Recovery"
 - Postgres wiki: [Full page writes](https://wiki.postgresql.org/wiki/Full_page_writes)
@@ -137,7 +137,7 @@ Below we discuss various ideas that can help you reduce the amount of WAL genera
 
 2) **Checkpoint tuning: enable compression of full-page writes**
 
-   Consider `wal_compression` – compression of full-page writes. In most cases, it is worth doing it 
+   Consider `wal_compression` – compression of full-page writes. In most cases, it is worth doing it
    (although, there are some reports that it led to higher CPU usage and decision to revert the change).
 
    Changing it doesn't require restart.

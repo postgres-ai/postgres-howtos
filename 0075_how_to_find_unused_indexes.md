@@ -59,7 +59,9 @@ A basic query is simple:
 ```sql
 select *
 from pg_stat_user_indexes
-where idx_scan = 0;
+where
+  idx_scan = 0
+  and not indisunique;
 ```
 
 How to understand how long ago the stats were last reset:
@@ -252,7 +254,7 @@ with const as (
     json_object_agg(coalesce(ruin.schema_name, 'public') || '.' || ruin.index_name, ruin) as json
   from rarely_used_indexes_num ruin
 ), do_lines as (
-  select 
+  select
     format(
       'DROP INDEX CONCURRENTLY %s; -- %s, %s, table %s',
       formated_index_name,
@@ -300,7 +302,7 @@ select
     'do',
     (select json_agg(dl.line) from do_lines as dl),
     'undo',
-    (select json_agg(ul.line) from undo_lines as ul),    
+    (select json_agg(ul.line) from undo_lines as ul),
     'database_stat',
     (select * from database_stat),
     'min_index_size_bytes',

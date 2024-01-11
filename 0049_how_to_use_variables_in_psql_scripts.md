@@ -80,7 +80,7 @@ nik=# show myvars.v1;
 Notes:
 
 - These are SQL queries, ending with a semicolon; they can be executed from other clients as well, not only from `psql`.
-- Custom GUC should be accompanied by a "_namespace_" (`set v1 = 1.23;` won't work – un-prefixed parameters are 
+- Custom GUC should be accompanied by a "_namespace_" (`set v1 = 1.23;` won't work – un-prefixed parameters are
   considered as standard GUC, such as `shared_buffers`).
 - Working with strings is straightforward (`set myvars.v1 to 'hello';`).
 
@@ -91,16 +91,16 @@ used, only during the current transaction). For persistence, use either of these
     ```sql
     nik=# alter system set myvars.v1 to 2;
     ALTER SYSTEM
-    
+
     nik=# select pg_reload_conf();
      pg_reload_conf
      ----------------
       t
      (1 row)
-     
+
      nik=# \c
      You are now connected to database "nik" as user "nik".
- 
+
      nik=# show myvars.v1;
       myvars.v1
      -----------
@@ -115,10 +115,10 @@ used, only during the current transaction). For persistence, use either of these
     ```sql
     nik=# alter database nik set myvars.v1 to 3;
     ALTER DATABASE
-   
+
     nik=# \c
     You are now connected to database "nik" as user "nik".
-   
+
     nik=# show myvars.v1;
      myvars.v1
     -----------
@@ -131,10 +131,10 @@ used, only during the current transaction). For persistence, use either of these
     ```sql
     nik=# alter user nik set myvars.v1 to 4;
     ALTER ROLE
-   
+
     nik=# \c
     You are now connected to database "nik" as user "nik".
-   
+
     nik=# show myvars.v1;
      myvars.v1
     -----------

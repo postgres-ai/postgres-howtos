@@ -60,7 +60,7 @@ join sa_snapshot as waiting_stm on waiting_stm.pid = waiting.pid
 join pg_catalog.pg_locks as blocker on
   waiting.pid <> blocker.pid
   and blocker.granted
-  and waiting.database = blocker.database 
+  and waiting.database = blocker.database
   and (
     waiting.relation  = blocker.relation
     or waiting.transactionid = blocker.transactionid

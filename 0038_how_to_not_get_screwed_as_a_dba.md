@@ -85,6 +85,6 @@ organizations. But again: don't trust blindly - study all the details, and test 
   things). Turning off `autovacuum` is a good way to put your server down.
 - In the OLTP context, avoid long-running transactions and unused/lagging replication slots.
 - Learn how to deploy schema changes without downtime.
-  Useful articles: 
+  Useful articles:
    - [Zero-downtime Postgres schema migrations need this: lock_timeout and retries](https://postgres.ai/blog/20210923-zero-downtime-postgres-schema-migrations-lock-timeout-and-retries)
    - [Common DB schema change mistakes](https://postgres.ai/blog/20220525-common-db-schema-change-mistakes)

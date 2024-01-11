@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1710176204953919574), [LinkedIn post](...). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1710176204953919574), [LinkedIn post](...).
 
 ---
 
@@ -22,7 +22,7 @@ To create a flamegraph, we need to perform a few quite simple steps:
 3. Clone the FlameGraph repo
 4. Get the process ID of the backend we're going to analyze
 5. Collect data
-6. Generate a flamegraph. 
+6. Generate a flamegraph.
 
 ## Demo setup (schema and workload)
 Before we discuss the analysis steps, here is what we're going to explore. The steps below are in psql connected to Postgres locally.
@@ -36,9 +36,9 @@ alter table t2 add primary key (i);
 vacuum analyze;
 ```
 
-Then run some Postgres planner's activity in an infinite loop: 
+Then run some Postgres planner's activity in an infinite loop:
 ```sql
-select pg_backend_pid(); -- remember it for step 4 
+select pg_backend_pid(); -- remember it for step 4
 (but check again if Postgres is restarted)
 
 explain select from t1
@@ -180,11 +180,11 @@ where i between 1000 and 2000;
 (5 rows)
 ```
 
-In this case, the planning time is really low, sub-millisecond – but I encountered with cases, when planning happened to be extremely slow, many seconds or even dozens of seconds. And it turned out (thanks to flamegraphs!) that analysing the Merge Join paths was the reason, so with "set enable_mergejoin = off" the planning time dropped to very low, sane values. But this is another story.
+In this case, the planning time is really low, sub-millisecond – but I encountered with cases, when planning happened to be extremely slow, many seconds or even dozens of seconds. And it turned out (thanks to flamegraphs!) that analyzing the Merge Join paths was the reason, so with "set enable_mergejoin = off" the planning time dropped to very low, sane values. But this is another story.
 
 ## Some good mate
 - Brendan Gregg's books: "Systems Performance" and "BPF Performance Tools"
-- Brendant Gregg's talks – for example, ["eBPF: Fueling New Flame Graphs & more • Brendan Gregg"](https://youtube.com/watch?v=HKQR7wVapgk) (video, 67 min) 
+- Brendan Gregg's talks – for example, ["eBPF: Fueling New Flame Graphs & more • Brendan Gregg"](https://youtube.com/watch?v=HKQR7wVapgk) (video, 67 min)
 - [Profiling with perf](https://wiki.postgresql.org/wiki/Profiling_with_perf) (Postgres wiki)
 
 ---

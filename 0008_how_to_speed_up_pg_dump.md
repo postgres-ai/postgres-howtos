@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1709490130749378796), [LinkedIn post](https://www.linkedin.com/pulse/how-speed-up-pgdump-when-dumping-large-postgres-nikolay-samokhvalov/). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1709490130749378796), [LinkedIn post](https://www.linkedin.com/pulse/how-speed-up-pgdump-when-dumping-large-postgres-nikolay-samokhvalov/).
 
 ---
 

@@ -32,7 +32,7 @@ nik=# select pg_sleep(.5);
 Time: 508.187 ms
 ```
 
-❗**Important:** for scripting involving `psql`, it is a good idea to use the option `-X` – to ignore `~/.psqlrc` 
+❗**Important:** for scripting involving `psql`, it is a good idea to use the option `-X` – to ignore `~/.psqlrc`
 settings, so the logic (e.g., `psql` output analysis) won't depend on `~/.psqlrc` at all.
 
 ## pspg
@@ -51,7 +51,7 @@ After installation:
 
 To install:
 
-- on macOS/homebrew: `brew install pspg`
+- on macOS/Homebrew: `brew install pspg`
 - Ubuntu/Debian: `sudo apt update && sudo apt install -y pspg`
 
 Then:

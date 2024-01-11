@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1710176204953919574), [LinkedIn post](...). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1710176204953919574), [LinkedIn post](...).
 
 ---
 
@@ -50,7 +50,7 @@ nik=# explain select from t1 where c1 = 2;
 
 – both queries here will be registered as `select * from t1 where c1 = $1` in `pgss`. But plans are different, because for `c1 = 1`, we have high selectivity, while for `c1 = 2` it is really bad (targeting all but 1 rows in the table).
 
-This means that looking at just `pgss` record demonstrating poor query latency, we cannot quickly jump to using `EXPLAIN` – we need to find particular query samples to work with. 
+This means that looking at just `pgss` record demonstrating poor query latency, we cannot quickly jump to using `EXPLAIN` – we need to find particular query samples to work with.
 
 Below, we discuss options to solve this problem.
 
@@ -64,13 +64,13 @@ So this method is limited and can be used only for simple cases.
 ## Option 2: get examples from Postgres log
 It is possible to find examples in the Postgres log – of course, if they are logged (usually via the `log_min_duration_statement` parameter or the `auto_explain` extension). To find examples for a given `pgss` record, we need to be able to find association of logged queries and `pgss` records. Two options:
 
-1. For PG14+, option [compute_query_id](https://postgresqlco.nf/doc/en/param/compute_query_id/) can provide the same queryid value that is used in pg_stat_statements, to the log entry. 
+1. For PG14+, option [compute_query_id](https://postgresqlco.nf/doc/en/param/compute_query_id/) can provide the same queryid value that is used in pg_stat_statements, to the log entry.
 2. Alternatively, we can use an excellent library [libpg_query](https://github.com/pganalyze/libpg_query; Ruby, Go, Python and other options are also available). It can be applied both to normalized (`pgss` records) and individual queries, producing so-called fingerprint, that can be then used to find the relationships we need.
 
 In general, using Postgres logs to find query examples is a good method, but for heavily-loaded systems, where it is impossible to log all queries, it is going to supply us with very slow examples only – those that exceed [log_min_duration_statement](https://postgresqlco.nf/doc/en/param/log_min_duration_statement/) (usually set to some quite high value, e.g. `500ms`).
 
 This situation can be improved with sampling and lowering the threshold for slow queries or even getting rid of it completely. Parameters for it:
-- [log_min_duration_sample](https://postgresqlco.nf/doc/en/param/log_min_duration_sample/) (PG13+) 
+- [log_min_duration_sample](https://postgresqlco.nf/doc/en/param/log_min_duration_sample/) (PG13+)
 - [log_statement_sample_rate](https://postgresqlco.nf/doc/en/param/log_statement_sample_rate/) (PG13+)
 - [log_transaction_sample_rate](https://postgresqlco.nf/doc/en/param/log_transaction_sample_rate/) (PG12+)
 
@@ -99,7 +99,7 @@ TBD:
 - tricks for versions <16
 
 ## Summary
-- In PG14+, use `compute_query_id` to have quer`y_id values both in Postgres logs and `pg_stat_activity`
+- In PG14+, use `compute_query_id` to have query_id values both in Postgres logs and `pg_stat_activity`
 - Increase `track_activity_query_size` (requires restart) to be able to track larger queries in `pg_stat_activity`
 - Organize workflow to combine records from `pg_stat_statements` and query examples from logs and `pg_stat_activity`, so when it comes to query optimization, you have good examples ready to be used with `EXPLAIN (ANALYZE, BUFFERS)`.
 

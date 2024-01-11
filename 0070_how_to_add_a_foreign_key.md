@@ -22,7 +22,7 @@ However, this operation requires locks on both tables involved:
    `users`  (plus `AccessShareLock` on its primary key, PK). This blocks any data modifications to `users` (`UPDATE`,
    `DELETE`, `INSERT`), as well as DDL.
 
-2. `ShareRowExclusiveLock` and `AccessShareLock` to the referencing table, in this example `messages` 
+2. `ShareRowExclusiveLock` and `AccessShareLock` to the referencing table, in this example `messages`
    (plus, `AccessShareLock` to its PK). Again, this blocks writes to this table, and DDL.
 
 And to ensure that the existing data doesn't violate the constraint, full table scans are needed – so the more data the
@@ -47,12 +47,12 @@ references users(id)
 not valid;
 ```
 
-This requires a very brief `ShareRowExclusiveLock` and `AccessShareLock` on both tables, so on loaded systems, it is 
+This requires a very brief `ShareRowExclusiveLock` and `AccessShareLock` on both tables, so on loaded systems, it is
 still recommended to execute this with low `lock_timeout` and retries (read:
 [Zero-downtime database schema migrations](https://postgres.ai/blog/20210923-zero-downtime-postgres-schema-migrations-lock-timeout-and-retries)),
 to avoid lock queue blocking writes to the tables.
 
-🖋️ **Important:** once the constraint with `NOT VALID` is in place, new writes are checked (while old rows have not 
+🖋️ **Important:** once the constraint with `NOT VALID` is in place, new writes are checked (while old rows have not
 been yet verified and some of them might violate the constraint):
 
 ```sql

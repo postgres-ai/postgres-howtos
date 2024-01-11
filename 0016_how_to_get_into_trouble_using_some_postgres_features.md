@@ -48,7 +48,7 @@ A couple of tips – how to make your code NULL-safe:
 - For comparison, instead of `=` or `<>`: `IS [NOT] DISTINCT FROM` (check out the `EXPLAIN` plan though).
 - Instead of concatenation, use: `format('%s %s', var1, var2)`.
 - Don't use `WHERE NOT IN (SELECT ...)` – use `NOT EXISTS` instead (
-  see thia [JOOQ blog post](https://jooq.org/doc/latest/manual/reference/dont-do-this/dont-do-this-sql-not-in/)).
+  see this [JOOQ blog post](https://jooq.org/doc/latest/manual/reference/dont-do-this/dont-do-this-sql-not-in/)).
 - Just be careful. `NULL`s are treacherous.
 
 ## Subtransactions under heavy loads

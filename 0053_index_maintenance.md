@@ -99,7 +99,7 @@ optionally, more. A few examples:
 
 Indexes having exactly the same definition are redundant to each other (a.k.a. duplicate indexes).
 
-An example of a query to identify redundant indexes can be found in 
+An example of a query to identify redundant indexes can be found in
 [Postgres DBA](https://github.com/NikolayS/postgres_dba/)
 or [Postgres Checkup](https://gitlab.com/postgres-ai/postgres-checkup).
 

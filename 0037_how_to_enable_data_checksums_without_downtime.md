@@ -10,9 +10,9 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1719969573318082
 ## Data checksums, the basics
 
 Postgres provides the ability to enable [data checksums](https://postgresql.org/docs/current/checksums.html), which is a
-good way to protect from certain types of corruption (not all of them). 
+good way to protect from certain types of corruption (not all of them).
 
-Note WAL has its own checksums, and it's 
+Note WAL has its own checksums, and it's
 [always enabled to verify the integrity of WAL data](https://gitlab.com/postgres/postgres/blob/40d5e5981cc0fa81710dc2399b063a522c36fd68/src/backend/access/transam/xloginsert.c#L896);
 in this post we discuss data checksums for table and index pages.
 
@@ -26,7 +26,7 @@ Per the [docs](https://postgresql.org/docs/current/app-initdb.html#APP-INITDB-DA
 > Enabling checksums may incur a noticeable performance penalty.
 
 However, I strongly recommend enabling data checksums for all clusters. If concerned about the overhead, test it.
-Example of a 
+Example of a
 [synthetic benchmark](https://gitlab.com/postgres-ai/postgresql-consulting/tests-and-benchmarks/-/issues/44), which
 demonstrated a very low (~2%) of CPU load increased. In my opinion, even if this overhead was higher, it would still be
 worth having them, considering how important it is to promptly detect storage-level corruption.

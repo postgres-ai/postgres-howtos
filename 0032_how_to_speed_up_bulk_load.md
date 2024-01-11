@@ -55,11 +55,11 @@ and require understanding that data can be lost if a crash happens):
 
 - Use `COPY` with `wal_level ='minimal'`. `COPY` has to be executed inside the transaction that created the table.
   In this case, due to `wal_level ='minimal'`, `COPY` writes won't be written to WAL
-  (as of PG16, this is so only if table is unpartitioned). 
+  (as of PG16, this is so only if table is unpartitioned).
   Additionally, consider using `COPY (FREEZE)` – this approach also provides a benefit: all tuples
   are frozen after the data load. Setting `wal_level='minimal'`, unfortunately, requires a restart, and additional
-  changes (`archive_mode = 'off'`, `max_wal_senders = 0`). Of course, this method doesn't work well in most of the 
-  production cases, but can be good for single-server setups. Details for the `wal_level='minimal'` + `COPY (FREEZE)` 
+  changes (`archive_mode = 'off'`, `max_wal_senders = 0`). Of course, this method doesn't work well in most of the
+  production cases, but can be good for single-server setups. Details for the `wal_level='minimal'` + `COPY (FREEZE)`
   recipe in [this post](https://cybertec-postgresql.com/en/loading-data-in-the-most-efficient-way/).
 
 ## 7) Parallelization
@@ -67,7 +67,7 @@ and require understanding that data can be lost if a crash happens):
 Consider parallelization. This may or may not speed up the process, depending on the bottlenecks of the single-threaded
 process (e.g., if single-threaded load saturates disk IO, parallelization won't help). Two options:
 
-- Partitioned tables and loading into multiple partitions using multiple workers 
+- Partitioned tables and loading into multiple partitions using multiple workers
   ([Day 20: pg_restore tips](0020_how_to_use_pg_restore.md)).
 
 - Unpartitioned table and loading in big chunks. Such chunks require preparation of them – it can be CSV split into

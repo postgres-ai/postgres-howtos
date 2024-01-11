@@ -81,7 +81,7 @@ to measure the benefits of enabling `wal_compression`).
 
 - Document all the aspects of the workload you've used – ideally, in a fully reproducible form (SQL, pgbench, sysbench,
   etc. details).
-- Understand the type of your benchmark, the kind of load testing you're aiming to have: is it edge-case load testing 
+- Understand the type of your benchmark, the kind of load testing you're aiming to have: is it edge-case load testing
   (stress testing) when you aim to go "full speed" or regular load testing, in which you try to simulate real-life
   situation when, for example, CPU usage is normally far below 100%. Note that by default, pgbench tends to give you
   "stress testing" (not limiting the number of TPS – to limit it, use option `-R`).

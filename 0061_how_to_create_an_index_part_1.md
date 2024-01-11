@@ -95,7 +95,7 @@ In general, Postgres has transaction support for DDL, but for `CREATE INDEX CONC
 
 ## Cleanup and retries
 
-Since we know that `CREATE INDEX CONCURRENTLY` might fail, we should be ready to retry, manually or automatically. 
+Since we know that `CREATE INDEX CONCURRENTLY` might fail, we should be ready to retry, manually or automatically.
 Before retrying, we need to cleanup an invalid index.
 Here the use of explicit naming and some schema convention pays off.
 

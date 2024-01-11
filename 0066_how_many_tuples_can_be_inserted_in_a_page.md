@@ -55,7 +55,7 @@ nik=# select pg_column_size(i) from t0 limit 1;
 (1 row)
 ```
 
-👉 If we use 4-byte numbers, then it's 226 tuples. Here I used `(ctid::text::point)[0]` to convert `ctid` value to 
+👉 If we use 4-byte numbers, then it's 226 tuples. Here I used `(ctid::text::point)[0]` to convert `ctid` value to
 "point" to get the first its component, then (the page number).
 
 If we use 2-byte numbers or, say, 1-byte `boolean` values (yes, boolean needs 1 byte, not 1 bit), the number is the
@@ -64,11 +64,11 @@ same:
 ```sql
 nik=# drop table t0;
 DROP TABLE
-    
+
 nik=# create table t0 as select true
 from generate_series(1, 1000) as i;
 SELECT 1000
-    
+
 nik=# select count(*)
   from t0
   where (ctid::text::point)[0] = 0;

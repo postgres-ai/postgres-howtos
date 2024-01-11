@@ -1,4 +1,4 @@
-Originally from: [tweet](https://twitter.com/samokhvalov/status/1708244676313317635), [LinkedIn post](https://www.linkedin.com/pulse/how-work-pgstatstatments-part-1-nikolay-samokhvalov/). 
+Originally from: [tweet](https://twitter.com/samokhvalov/status/1708244676313317635), [LinkedIn post](https://www.linkedin.com/pulse/how-work-pgstatstatments-part-1-nikolay-samokhvalov/).
 
 ---
 
@@ -16,7 +16,7 @@ Today we focus on how to read and use [pg_stat_statements](https://postgresql.or
 ## pg_stat_statements basics
 Extension `pg_stat_statements` (for short, "pgss") became standard de-facto for macro-analysis.
 
-It tracks all queries, aggregating them to query groups – called "normalized queries" – where parameters are 
+It tracks all queries, aggregating them to query groups – called "normalized queries" – where parameters are
 removed.
 
 There are certain limitations, some of which are worth remembering:
@@ -62,7 +62,7 @@ If your monitoring system supports pgss, you don't need to deal with working wit
 
 Assuming you successfully obtained 2 snapshots of pgss (remembering timestamp when they were collected) or use proper monitoring tool, let's consider practical meaning of the three derivatives we discussed.
 
-## Derivative 1. Time-based differentiation 
+## Derivative 1. Time-based differentiation
 * `dM/dt`, where `M` is `calls` – the meaning is simple. It's QPS (queries per second). If we talk about particular group (normalized query), it's that all queries in this group have. `10,000` is pretty large so, probably, you need to improve the client (app) behavior to reduce it, `10` is pretty small (of course, depending on situation). If we consider this derivative for whole node, it's our "global QPS".
 
 * `dM/dt`, where `M` is `total_plan_time + total_exec_time` – this is the most interesting and key metric in query macro analysis targeted at resource consumption optimization (goal: reduce time spent by server to process queries). Interesting fact: it is measured in "seconds per second", meaning: how many seconds our server spends to process queries in this query group. *Very* rough (but illustrative) meaning: if we have `2 sec/sec` here, it means that we spend 2 seconds each second to process such queries – we definitely would like to have more than 2 vCPUs to do that. Although, this is a very rough meaning because pgss doesn't distinguish situations when query is waiting for some lock acquisition vs. performing some actual work in CPU (for that, we need to involve wait event analysis) – so there may be cases when the value here is high not having a significant effect on the CPU load.
