@@ -112,6 +112,13 @@ As an example, first 2 rows:
 - 0083 [How to quickly check data type and storage size of a value](./0083_how_to_quickly_check_data_type_and_storage_size_of_a_value.md)
 - 0084 [How to find the best order of columns to save on storage ("Column Tetris")](./0084_how_to_find_the_best_order_of_columns_to_save_on_storage.md)
 - 0085 [How to quickly check data type and storage size of a value](./0085_how_to_quickly_check_data_type_and_storage_size_of_a_value.md)
+- 0086 [How to make "\e" work in psql on a new machine ("editor/nano/vi not found")](./0086_how_to_make_e_work_in_psql.md)
+- 0087 [How to change ownership of all objects in a database](./0087_how_to_change_ownership_of_all_objects_in_a_database.md)
+- 0088 [How to tune Linux parameters for OLTP Postgres](./0088_how_to_tune_linux_parameters_for_oltp_postgres.md)
+- 0089 [Rough configuration tuning (80/20 rule; OLTP)](./0089_rough_oltp_configuration_tuning.md)
+- 0090 [How to use lib_pgquery in shell to normalize and match queries from various sources](./0090_how_to_use_lib_pgquery_in_shell.md)
+- 0091 [How to format text output in psql scripts](./0091_how_to_format_text_output_in_psql_scripts.md)
+- 0092 [How to tune work_mem](./0092_how_to_tune_work_mem.md)
 - ...
 
 ## Contributors
