@@ -11,6 +11,10 @@ This project has been started by @NikolayS on 2023-09-26 https://twitter.com/sam
 
 [Subscribe](https://twitter.com/samokhvalov/status/1706748070967624174), like, share, and wish me luck with this -- and let's go! 🏊
 
+## GPT
+
+2024-01-10 OpenAI launched GPT Store, so there is now GPT called `#PostgresMarathon` available there: https://chat.openai.com/g/g-ZmfkdmXzD-postgresmarathon – feel free to use it, it contains all the knowledge from here.
+
 ## ToC
 <!-- To build it using LLM, use this prompt:
 """
@@ -121,6 +125,7 @@ As an example, first 2 rows:
 - 0092 [How to tune work_mem](./0092_how_to_tune_work_mem.md)
 - ...
 
-## Contributors
+## Contributors (thanks!!)
 
-- Some tweets converted to markdown by @msdousti (thanks!)
+- Tweets converted to markdown by @msdousti 
+- Corrections by @borisz1
