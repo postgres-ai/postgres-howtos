@@ -108,7 +108,7 @@ create or replace function openai_get_embedding(
 as $$
  import requests
 
- response = http://requests.post(
+ response = requests.post(
    'https://api.openai.com/v1/embeddings',
    headers={ 'Authorization': f'Bearer {api_key}' },
    json={
