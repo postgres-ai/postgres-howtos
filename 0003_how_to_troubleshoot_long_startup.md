@@ -174,3 +174,5 @@ That's it! I hope this helps keep you calm and allows you to wait consciously fo
 Note that this post is a How-To draft; I wrote it quickly, and it might contain some inaccuracies. I'm going to upload all my How-To drafts to a Git repo soon to keep them open, public, and welcoming of fixes & improvements. Stay tuned!
 
 As usual, if you find this helpful, please [subscribe](https://twitter.com/samokhvalov), like, share, and comment! 💛
+
+UPDATE 2024-05-07: also see [`log_startup_progress_interval`](https://postgresqlco.nf/doc/en/param/log_startup_progress_interval/15/) introduced in PG15.
