@@ -8,7 +8,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1726184669622989
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
 
 🥳🤩🎂🎉 It's my birthday, plus we've just soft-launched our
-[postgres.ai bot](https://twitter.com/samokhvalov/status/1726177412755677283) – so forgive me a far complete article
+[postgres.ai bot](https://twitter.com/samokhvalov/status/1726177412755677283) – so forgive me a far from being complete article
 this time. Nevertheless, I keep posting 😅
 
 There are many types of corruption. Some kinds of them can be identified by extension `amcheck`
