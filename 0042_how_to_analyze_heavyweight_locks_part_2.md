@@ -93,8 +93,7 @@ select
   ) as query
 from tree
 order by top_blocker_pid, level, pid
-
-\watch 10
+; -- to run query in a loop, use this instead of ";":   \watch 10
 ```
 
 Notes:
