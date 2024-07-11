@@ -12,6 +12,11 @@ FATAL:  the database system is not yet accepting connections
 DETAIL:  Consistent recovery state has not been yet reached.
 ```
 
+or:
+```
+pq: the database system is starting up
+```
+
 What NOT to do (common patterns for non-experts):
 - start worrying or waiting for a long time without understanding how long it might take
 - attempt to stop/start again, and again
