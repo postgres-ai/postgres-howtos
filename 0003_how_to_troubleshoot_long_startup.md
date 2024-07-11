@@ -14,6 +14,11 @@ DETAIL:  Consistent recovery state has not been yet reached.
 
 or:
 ```
+FATAL: the database system is starting up
+```
+
+or, from client's perspective:
+```
 pq: the database system is starting up
 ```
 
