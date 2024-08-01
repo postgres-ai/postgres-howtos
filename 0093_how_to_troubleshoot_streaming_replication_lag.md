@@ -77,3 +77,8 @@ TBD
 - [Streaming replication](https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION) (official Postgres docs)
 - [pg_stat_replication view](https://www.postgresql.org/docs/current/monitoring-stats.html#PG-STAT-REPLICATION-VIEW) (official Postgres docs)
 - [Replication configuration parameters](https://www.postgresql.org/docs/current/runtime-config-replication.html) (official Postgres docs)
+
+## Authors/maintainers of this docs
+- Dmitry Fomin
+- Sadeq Dousti
+- Nikolay Samokhvalov
