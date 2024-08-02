@@ -2,7 +2,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1718513041829187
 
 ---
 
-# How to redefine a PK without downtime. Method 1: "New column"
+# How to redefine a PK without downtime
 
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
