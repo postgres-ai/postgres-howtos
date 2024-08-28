@@ -320,7 +320,7 @@ where
 
 ## 8) Nested queries
 
-Do not use nested queries. Instead, use common table expressions to improve readability.
+Do not use nested queries. Instead, use common table expressions (CTEs, keyword `WITH`) to improve readability.
 
 ✅ Good:
 
@@ -347,7 +347,6 @@ from (
         client_id,
         submission_date
     from main_summary
-from main_summaryain_summary
     where
         sample_id = '42'
 )
