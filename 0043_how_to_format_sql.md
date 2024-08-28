@@ -2,7 +2,7 @@ Originally from: [tweet](https://twitter.com/samokhvalov/status/1722155043569496
 
 ---
 
-# How to format SQL
+# How to format SQL (SQL style guide)
 
 > I post a new PostgreSQL "howto" article every day. Join me in this
 > journey – [subscribe](https://twitter.com/samokhvalov/), provide feedback, share!
