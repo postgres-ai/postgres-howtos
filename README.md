@@ -73,7 +73,7 @@ As an example, first 2 rows:
 - 0040 [How to break a database, Part 2: Simulate infamous transaction ID wraparound](./0040_how_to_break_a_database_part_2_simulate_xid_wraparound.md)
 - 0041 [How to break a database, Part 3: Harmful workloads](./0041_harmful_workloads.md)
 - 0042 [How to analyze heavyweight locks, part 2: Lock trees (a.k.a. "lock queues", "wait queues", "blocking chains")](./0042_how_to_analyze_heavyweight_locks_part_2.md)
-- 0043 [How to format SQL](./0043_how_to_format_sql.md)
+- 0043 [How to format SQL (SQL style guide)](./0043_how_to_format_sql.md)
 - 0044 [How to monitor transaction ID wraparound risks](./0044_how_to_monitor_transaction_id_wraparound_risks.md)
 - 0045 [How to monitor xmin horizon to prevent XID/MultiXID wraparound and high bloat](./0045_how_to_monitor_xmin_horizon.md)
 - 0046 [How to deal with bloat](./0046_how_to_deal_with_bloat.md)
